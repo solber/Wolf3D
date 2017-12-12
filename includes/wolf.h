@@ -26,7 +26,6 @@ typedef struct	s_env
 	t_cam		cam;
 	t_ray		ray;
 	t_map		map;
-	t_moi		moi;
 }				t_env;
 
 t_env			*ft_use_env(int action);

@@ -8,6 +8,7 @@ int				exit_hook(void *param)
 {
 	param = 0;
 	ft_use_env(0);
+	system("killall afplay");
 	exit(1);
 }
 
