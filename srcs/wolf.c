@@ -20,7 +20,7 @@ t_env			*ft_use_env(int action, char *filename)
 			env->win_ptr = mlx_new_window(env->mlx_ptr, env->width,
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
-			
+			load_text(env, env->textures);
 			map_init(&(env->map), filename);
 			cam_init(&(env->cam), 66, 0);
 		}

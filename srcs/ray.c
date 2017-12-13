@@ -100,9 +100,17 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 		start = 0;
 	if (end >= height)
 		end = height - 1;
+	get_tex_x(env, ray);
 	while (start < end)
 	{
+		get_tex_y(ray, start, height, line_height);
+		color = get_pixel_from_texture(env, ray);
 		img_put_px(env, color, pos, start);
 		start++;
 	}
+	/*while (start < end)
+	{
+		img_put_px(env, color, pos, start);
+		start++;
+	}*/
 }
