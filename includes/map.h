@@ -1,15 +1,20 @@
 #ifndef MAP_H
 # define MAP_H
-# define MAP_WIDTH 12
-# define MAP_HEIGHT 18
+
+# include <fcntl.h>
 
 typedef struct	s_map
 {
-	int			data[MAP_WIDTH * MAP_HEIGHT];
+	int 		w;
+	int 		h;
+	int 		fd;
+	int			*data;
 }				t_map;
 
-void			map_init(t_map *map);
+void			map_init(t_map *map, char *filename);
 int				map_get(t_map *map, int x, int y);
 int				map_color(int side);
-
+void 			ft_open(t_map *map, char *filename);
+void			ft_get_size(t_map *map);
+void 			ft_set_map(t_map *map);
 #endif

@@ -5,7 +5,7 @@
 ** si on fail le malloc ou que !action on free lenv
 */
 
-t_env			*ft_use_env(int action)
+t_env			*ft_use_env(int action, char *filename)
 {
 	static t_env		*env;
 
@@ -21,7 +21,7 @@ t_env			*ft_use_env(int action)
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
 			
-			map_init(&(env->map));
+			map_init(&(env->map), filename);
 			cam_init(&(env->cam), 66, 0);
 		}
 		else
@@ -82,7 +82,7 @@ int				expose_hook(void *param)
 	t_env		*env;
 	int			x;
 
-	env = ft_use_env(-1);
+	env = ft_use_env(-1, 0);
 	param = 0;
 	if (env)
 	{
@@ -108,9 +108,9 @@ int				main(int argc, char **argv)
 	t_env		*env;
 
 	env = 0;
-	if (argc == 1 && argv)
+	if (argc == 2 && argv[1])
 	{
-		env = ft_use_env(1);
+		env = ft_use_env(1, argv[1]);
 		if (env != 0 && env->mlx_ptr != 0)
 		{
 			mlx_hook(env->win_ptr, 2, 1, key_hook_press, 0);
@@ -122,7 +122,7 @@ int				main(int argc, char **argv)
 			mlx_loop(env->mlx_ptr);
 		}
 	}
-	ft_putstr("Usage : wolf3d\n");
-	ft_use_env(0);
+	ft_putstr("Usage : wolf3d <map>\n");
+	ft_use_env(0, 0);
 	return (0);
 }

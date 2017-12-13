@@ -3,7 +3,8 @@ SRC= srcs/inputs.c \
 	srcs/map.c \
 	srcs/ray.c \
 	srcs/camera.c \
-	srcs/wolf.c
+	srcs/wolf.c \
+	srcs/parse.c
 
 CC=clang
 CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror

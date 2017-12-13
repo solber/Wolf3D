@@ -7,7 +7,7 @@
 int				exit_hook(void *param)
 {
 	param = 0;
-	ft_use_env(0);
+	ft_use_env(0, 0);
 	system("killall afplay");
 	exit(1);
 }
@@ -67,7 +67,7 @@ int				key_hook_press(int keycode, void *param)
 {
 	t_env		*env;
 
-	env = ft_use_env(-1);
+	env = ft_use_env(-1, 0);
 	param = 0;
 	if (keycode == 53)
 		exit_hook(param);
@@ -97,7 +97,7 @@ int				key_hook_release(int keycode, void *param)
 {
 	t_env		*env;
 
-	env = ft_use_env(-1);
+	env = ft_use_env(-1, 0);
 	param = 0;
 	if (env != 0 && keycode == FORWARD)
 		env->inputs.up = 0;
