@@ -20,7 +20,7 @@ t_env			*ft_use_env(int action, char *filename)
 			env->win_ptr = mlx_new_window(env->mlx_ptr, env->width,
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
-			
+			load_text(env, env->textures);
 			map_init(&(env->map), filename);
 			cam_init(&(env->cam), 66, 0);
 		}
@@ -118,7 +118,7 @@ int				main(int argc, char **argv)
 			mlx_hook(env->win_ptr, 17, 0, exit_hook, 0);
 			mlx_expose_hook(env->win_ptr, expose_hook, 0);
 			mlx_loop_hook(env->mlx_ptr, expose_hook, 0);
-			system("afplay song.mp3 &");
+			system("afplay sounds/song.mp3 &");
 			mlx_loop(env->mlx_ptr);
 		}
 	}

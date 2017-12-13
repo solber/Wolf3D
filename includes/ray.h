@@ -20,6 +20,8 @@ typedef struct	s_ray
 	int			step_x;
 	int			step_y;
 	int			side;
+	int 		tex_x;
+	int 		tex_y;
 }				t_ray;
 
 void			ray_init(t_ray *ray, t_cam *camera, double cur_pos);

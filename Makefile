@@ -4,7 +4,8 @@ SRC= srcs/inputs.c \
 	srcs/ray.c \
 	srcs/camera.c \
 	srcs/wolf.c \
-	srcs/parse.c
+	srcs/parse.c \
+	srcs/textures.c
 
 CC=clang
 CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror
@@ -20,12 +21,12 @@ $(NAME): $(OBJ)
 all: $(NAME)
 
 clean:
-	make clean -C libft/
-	make clean -C minilibx_macos/
+	make -C libft/ clean
+	make -C minilibx_macos/ clean
 	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C libft/
+	make -C libft/ fclean
 	rm -f $(NAME)
 
 re: fclean all
