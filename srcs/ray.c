@@ -101,6 +101,7 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 	if (end >= height)
 		end = height - 1;
 	get_tex_x(ray);
+	get_tex_x(env, ray);
 	while (start < end)
 	{
 		get_tex_y(ray, start, height, line_height);

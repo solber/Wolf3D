@@ -38,7 +38,7 @@ typedef struct	s_env
 	t_text		textures[NB_TEXTURES];
 }				t_env;
 
-t_env			*ft_use_env(int action, char *filename);
+t_env			*ft_use_env(int action);
 void			input_action(t_env *env);
 int				expose_hook(void *param);
 void			img_put_px(t_env *env, unsigned long color, int x, int y);
@@ -50,6 +50,12 @@ void			ft_exit(int error);
 */
 
 void	get_tex_x(t_ray *ray);
+
+/*
+** fonctions de textures
+*/
+
+void	get_tex_x(t_env *env, t_ray *ray);
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);

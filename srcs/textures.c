@@ -32,6 +32,7 @@ static void		get_text(t_env *env, t_text *textures, char *path, int index)
 
 void			load_text(t_env *env, t_text *textures)
 {
+<<<<<<< HEAD
 
 	get_text(env, textures, "textures/wall.xpm", 2);
 	get_text(env, textures, "textures/gmonnier.xpm", 3);
@@ -39,8 +40,6 @@ void			load_text(t_env *env, t_text *textures)
 	get_text(env, textures, "textures/wall_brick.xpm", 5);
 	get_text(env, textures, "textures/diamond.xpm", 6);
 	get_text(env, textures, "textures/ground.xpm", 7);
-	//get_text(env, textures, "textures/roof.xpm", 8);
-
 }
 
 /*
@@ -58,12 +57,20 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 {
 	int text_index;
 
+<<<<<<< HEAD
 	text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
+=======
+	text_index = env->map.data[ray->map_x * ray->map_y];
+>>>>>>> c9607d33bc7086fb477953ea53760efb8d256ee9
 	return (env->textures[text_index].data[TEXT_HEIGHT *
 	ray->tex_y + ray->tex_x]);
 }
 
+<<<<<<< HEAD
 void	get_tex_x(t_ray *ray)
+=======
+void	get_tex_x(t_env *env, t_ray *ray)
+>>>>>>> c9607d33bc7086fb477953ea53760efb8d256ee9
 {
 	int		tex_x;
 	double	wall_x;
