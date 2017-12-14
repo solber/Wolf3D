@@ -98,6 +98,8 @@ int				expose_hook(void *param)
 		input_action(env);
 		//print_map(env->map);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin));
 	}
 	return (0);
 }
