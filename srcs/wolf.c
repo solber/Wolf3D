@@ -53,18 +53,19 @@ void			img_put_px(t_env *env, unsigned long color, int x, int y)
 static void		vertical_draw(t_env *env, int x)
 {
 	double	cur_pos;
-	int		color;
+	//int		color;
 	int		y;
 
 	y = 0;
-	while (y < env->height - 1)
+	//useless with floor_casting
+	/*while (y < env->height - 1)
 	{
 		color = 0x14E4FF;
 		if (y > env->height / 2)
 			color = 0x838585;
 		img_put_px(env, color, x, y);
 		y++;
-	}
+	}*/
 	cur_pos = (double)x / (double)env->width;
 	ray_init(&(env->ray), &(env->cam), cur_pos);
 	ray_side_dist(&(env->ray));

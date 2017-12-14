@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 10:38:10 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/14 12:28:47 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 	int text_index;
 
 	text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
+	//assombri les couleurs pour side == 1 (modifiable)
+	if (ray->side == 1)
+		return ((env->textures[text_index].data[TEXT_HEIGHT *
+		ray->tex_y + ray->tex_x] >> 1) & 0x7F7F7F);
 	return (env->textures[text_index].data[TEXT_HEIGHT *
 	ray->tex_y + ray->tex_x]);
 }
