@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/13 16:02:14 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:19:29 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
 
-# define NB_TEXTURES 8
+# define NB_TEXTURES 9
 
 typedef struct	s_text
 {

@@ -32,6 +32,29 @@ void ft_get_size(t_map *map)
 	}
 }
 
+void ft_get_tex(t_map *map)
+{
+	t_env	*env;
+	char	**splited;
+	char	*line;
+	int		count;
+
+	count = 0;
+	env = ft_use_env(-1, 0);
+	while (get_next_line(map->fd, &line) && count <= 1)
+	{
+		if (count)
+		{
+			splited = ft_strsplit(line, ' ');
+			env->floor = ft_atoi(splited[0]);
+			env->roof = ft_atoi(splited[1]);
+			free(splited);
+		}		
+		free(line);
+		count++;
+	}
+}
+
 void ft_set_map(t_map *map)
 {
 	char 	**splited;
@@ -43,20 +66,18 @@ void ft_set_map(t_map *map)
 	count = 0;
 	i = 0;
 	j = 0;
-	while (get_next_line(map->fd, &line) && count <= map->h + 3)
+	while (get_next_line(map->fd, &line) && count < map->h)
 	{
-		if (count >= 4)
+		ft_putendl(line);
+		splited = ft_strsplit(line, ' ');
+		while (splited[j])
 		{
-			splited = ft_strsplit(line, ' ');
-			while (splited[j])
-			{
-				map->data[i] = ft_atoi(splited[j]);
-				i++;
-				j++;
-			}
-			j = 0;
-			free(splited);
+			map->data[i] = ft_atoi(splited[j]);
+			i++;
+			j++;
 		}
+		j = 0;
+		free(splited);
 		if (line)
 			free(line);
 		count++;

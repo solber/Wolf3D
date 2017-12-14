@@ -29,12 +29,12 @@ typedef struct	s_env
 	int 		*moiimg;
 	int 		*moiimgdata;
 	char		*tmp;
-
+	int 		roof;
+	int 		floor;
 	t_inputs	inputs;
 	t_cam		cam;
 	t_ray		ray;
 	t_map		map;
-
 	t_text		textures[NB_TEXTURES];
 }				t_env;
 

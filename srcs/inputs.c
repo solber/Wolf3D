@@ -24,6 +24,7 @@ void			input_action(t_env *env)
 {
 	double speedmv = 0.15;
 	double speedrot = 0.10;
+
 	if (env->inputs.left == 1)
 		cam_left(&(env->cam), speedrot);
 	if (env->inputs.right == 1)
@@ -84,8 +85,6 @@ int				key_hook_press(int keycode, void *param)
 	if (env != 0 && keycode == STRAFR)
 		env->inputs.sright = 1;
 	key_hook_press_cam(env, keycode);
-	ft_putnbr(keycode);
-	ft_putchar('\n');
 	return (0);
 }
 

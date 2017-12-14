@@ -21,9 +21,11 @@ void			map_init(t_map *map, char *filename)
 {
 	ft_open(map, filename);
 	ft_get_size(map);
+	ft_get_tex(map);
 	if (!(map->data = (int *)malloc(sizeof(int) * (map->w * map->h))))
 		ft_exit(1);
 	ft_set_map(map);
+	map->coin = 0;
 }
 
 /*

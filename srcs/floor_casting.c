@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_casting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 10:28:08 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 12:32:12 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/14 14:35:42 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void		floor_casting(t_env *env, t_ray *ray, int pos)
 		ray->floor_text_y = (int)(current_floor_y * TEXT_HEIGHT) % TEXT_HEIGHT;
 		//floor
 		//decalage binaire pour le rendre plus fonce
-		img_put_px(env, (env->textures[7].data[TEXT_WIDTH * ray->floor_text_y + ray->floor_text_x] >> 1) & 0x7F7F7F, pos, y);
+		img_put_px(env, (env->textures[env->floor].data[TEXT_WIDTH * ray->floor_text_y + ray->floor_text_x] >> 1) & 0x7F7F7F, pos, y);
 		//ceiling (symmetrical!)
-		img_put_px(env, env->textures[7].data[TEXT_WIDTH * ray->floor_text_y + ray->floor_text_x], pos, env->height - y);
+		img_put_px(env, env->textures[env->roof].data[TEXT_WIDTH * ray->floor_text_y + ray->floor_text_x], pos, env->height - y);
 	}
 }

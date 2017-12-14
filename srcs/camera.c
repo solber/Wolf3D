@@ -1,6 +1,6 @@
-#include <camera.h>
 #include <math.h>
-
+#include <camera.h>
+#include <wolf.h>
 /*
 ** init des vals de base de la cam
 ** xy en 2 pour pas poper dans un mur
@@ -33,17 +33,16 @@ void			cam_init(t_cam *cam, double fov, int onlyfov)
 
 void			cam_forward(t_cam *cam, t_map *map, double speed)
 {
-	int x;
-	int y;
-
-	x = (int)(cam->pos_x + cam->dir_x * speed);
-	y = (int)(cam->pos_y + cam->dir_y * speed);
-	if (map_get(map, x, (int)cam->pos_y) == 0
-		&& map_get(map, (int)cam->pos_x, y) == 0)
+	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed);
+	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
+	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
+		&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
 	{
 		cam->pos_x += cam->dir_x * speed;
 		cam->pos_y += cam->dir_y * speed;
 	}
+	get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), 
+		map_get(map, (int)cam->pos_x, map->hited_obj_y), map);
 }
 
 /*
@@ -52,17 +51,16 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 
 void			cam_backward(t_cam *cam, t_map *map, double speed)
 {
-	int x;
-	int y;
-
-	x = (int)(cam->pos_x - cam->dir_x * speed);
-	y = (int)(cam->pos_y - cam->dir_y * speed);
-	if (map_get(map, x, (int)cam->pos_y) == 0
-		&& map_get(map, (int)cam->pos_x, y) == 0)
+	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed); // eventual position if i walk X
+	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed); // Eventual position if i walk on Y
+	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
+		&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
 	{
 		cam->pos_x -= cam->dir_x * speed;
 		cam->pos_y -= cam->dir_y * speed;
 	}
+	get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y),
+		map_get(map, (int)cam->pos_x, map->hited_obj_y), map);
 }
 
 /*

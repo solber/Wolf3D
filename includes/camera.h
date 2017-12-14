@@ -14,9 +14,10 @@ typedef struct	s_cam
 }				t_cam;
 
 void			cam_init(t_cam *cam, double fov, int onlyfov);
+void			cam_right(t_cam *cam, double speed);
 void			cam_forward(t_cam *cam, t_map *map, double speed);
 void			cam_backward(t_cam *cam, t_map *map, double speed);
-void			cam_right(t_cam *cam, double speed);
 void			cam_left(t_cam *cam, double speed);
+void			get_collision(int x, int y, t_map *map);
 
 #endif
