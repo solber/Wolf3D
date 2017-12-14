@@ -7,6 +7,7 @@ static void add_coin(t_map *map)
 	ft_putstr("coin : ");
 	ft_putnbr(map->coin);
 	ft_putchar('\n');
+	system("afplay sounds/sfx_point.wav &");
 	//ft_putstr("BEFORE : ");
 	//ft_putnbr(map_get(map, map->hited_obj_x, map->hited_obj_y));
 	map->data[map->hited_obj_x + map->hited_obj_y * map->w] = 0;
