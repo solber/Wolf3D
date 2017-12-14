@@ -1,6 +1,19 @@
 #ifndef INPUTS_H
 # define INPUTS_H
 
+#ifdef __linux__
+
+# define FORWARD 119
+# define BACKWARD 115
+# define LEFT 97
+# define RIGHT 100
+# define STRAFL 113
+# define STRAFR 101
+
+# define FOVUP 65451
+# define FOVDOWN 65453
+
+#else
 # define FORWARD 13
 # define BACKWARD 1
 # define LEFT 0
@@ -10,6 +23,7 @@
 
 # define FOVUP 69
 # define FOVDOWN 78
+#endif
 
 typedef struct	s_inputs
 {

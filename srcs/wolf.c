@@ -96,6 +96,7 @@ int				expose_hook(void *param)
 			x++;
 		}
 		input_action(env);
+		//print_map(env->map);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
 	}
 	return (0);

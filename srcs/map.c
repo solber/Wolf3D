@@ -48,6 +48,7 @@ int				map_get(t_map *map, int x, int y)
 }
 
 /*
+** Useless now
 ** on renvoi la couleur en fonction de l'orientation
 */
 
@@ -61,3 +62,25 @@ int				map_color(int side)
 		return (0x0DFF00);
 	return (0xFFEE00);
 }
+
+/*
+**debug
+*/
+
+void			print_map(t_map map)
+{
+	int i;
+
+	i = 0;
+	printf("\n");
+	while (i < map.h * map.w)
+	{
+		printf("%d ", map.data[i]);
+		i++;
+		if (i % map.w == 0)
+			printf("\n");
+	}
+	printf("\n");
+}
+
+

@@ -21,4 +21,7 @@ void 			ft_open(t_map *map, char *filename);
 void			ft_get_size(t_map *map);
 void			ft_get_tex(t_map *map);
 void 			ft_set_map(t_map *map);
+
+//debug
+void			print_map(t_map map);
 #endif
