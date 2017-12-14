@@ -28,21 +28,21 @@ void			cam_init(t_cam *cam, double fov, int onlyfov)
 /*
 ** action lorsque on appuy sur W
 ** on recup la position du joueur
-** puis si le joueur se trouve sur un bloc vide 0 il se deplace
+** check des collisions puis deplacement
 */
 
 void			cam_forward(t_cam *cam, t_map *map, double speed)
 {
 	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed);
 	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
-	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
-		&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+	//if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
+	//	&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+	if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
+	map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
 	{
 		cam->pos_x += cam->dir_x * speed;
 		cam->pos_y += cam->dir_y * speed;
 	}
-	get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), 
-		map_get(map, (int)cam->pos_x, map->hited_obj_y), map);
 }
 
 /*
@@ -53,14 +53,12 @@ void			cam_backward(t_cam *cam, t_map *map, double speed)
 {
 	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed); // eventual position if i walk X
 	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed); // Eventual position if i walk on Y
-	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
-		&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+	if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
+	map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
 	{
 		cam->pos_x -= cam->dir_x * speed;
 		cam->pos_y -= cam->dir_y * speed;
 	}
-	get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y),
-		map_get(map, (int)cam->pos_x, map->hited_obj_y), map);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 15:19:18 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/14 17:36:25 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void			load_text(t_env *env, t_text *textures)
 	get_text(env, textures, "textures/diamond.xpm", 6);
 	get_text(env, textures, "textures/ground.xpm", 7);
 	get_text(env, textures, "textures/chest.xpm", 8);
+	get_text(env, textures, "textures/diamond.xpm", 9);
 }
 
 /*

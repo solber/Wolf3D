@@ -44,7 +44,7 @@ int				map_get(t_map *map, int x, int y)
 			return (map->data[pos]);
 		}
 	}
-	return (0xffffff);
+	return (0xffffff); //return -1 pour erreur plutot?
 }
 
 /*

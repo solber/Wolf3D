@@ -17,8 +17,13 @@ static void add_coin(t_map *map)
 	//print_map(*map);
 }
 
-void get_collision(int x, int y, t_map *map)
+int		get_collision(int x, int y, t_map *map)
 {
+	if (x == 0 && y == 0)
+		return (1);
 	if (x == 8 || y == 8)
 		add_coin(map);
+	if (x == 9 || y == 9)
+		return (1);
+	return (0);
 }
