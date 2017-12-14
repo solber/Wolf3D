@@ -70,6 +70,7 @@ static void		vertical_draw(t_env *env, int x)
 	ray_side_dist(&(env->ray));
 	ray_dda(&(env->ray), &(env->map), !env->inputs.wall);
 	ray_display(env, &(env->ray), x, env->height);
+	floor_casting(env, &(env->ray), x);
 }
 
 /*

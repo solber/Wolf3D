@@ -5,7 +5,8 @@ SRC= srcs/inputs.c \
 	srcs/camera.c \
 	srcs/wolf.c \
 	srcs/parse.c \
-	srcs/textures.c
+	srcs/textures.c \
+	srcs/floor_casting.c
 
 CC=clang
 CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror

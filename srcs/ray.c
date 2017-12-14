@@ -83,7 +83,6 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 {
 	int		line_height;
 	int		start;
-	int		end;
 	int		color;
 
 	if (ray->side <= 1)
@@ -95,13 +94,13 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 	color = map_color(ray->side);
 	line_height = (int)(height / ray->wall_dist);
 	start = -line_height / 2 + height / 2;
-	end = line_height / 2 + height / 2;
+	ray->end = line_height / 2 + height / 2;
 	if (start < 0)
 		start = 0;
-	if (end >= height)
-		end = height - 1;
+	if (ray->end >= height)
+		ray->end = height - 1;
 	get_tex_x(ray);
-	while (start < end)
+	while (start < ray->end)
 	{
 		get_tex_y(ray, start, height, line_height);
 		color = get_pixel_from_texture(env, ray);

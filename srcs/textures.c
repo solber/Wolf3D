@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 10:20:03 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/14 10:38:10 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,16 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 void	get_tex_x(t_ray *ray)
 {
 	int		tex_x;
-	double	wall_x;
 
 	//valeur exacte ou la ray a touchee la texture
 	if (ray->side <= 1)
-		wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
+		ray->wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
 	else
-		wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
-	wall_x -= floor(wall_x);
+		ray->wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 
 	//pixel correspondant sur la texture
-	tex_x = (int)(wall_x * (double)(TEXT_WIDTH));
+	tex_x = (int)(ray->wall_x * (double)(TEXT_WIDTH));
 	if (ray->side <= 1 && ray->dir_x > 0)
 		tex_x = TEXT_WIDTH - tex_x - 1;
 	if (ray->side > 1 && ray->dir_y < 0)

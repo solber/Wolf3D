@@ -22,6 +22,12 @@ typedef struct	s_ray
 	int			side;
 	int 		tex_x;
 	int 		tex_y;
+	int			end; // jusqu'ou on doit draw la ray en vertical
+	double		wall_x; //valeur exacte ou la ray a touchee la texture
+	double		floor_x_wall;
+	double		floor_y_wall; //x et y de la texture du sol en dessous de la ray
+	int			floor_text_x;
+	int			floor_text_y;
 }				t_ray;
 
 void			ray_init(t_ray *ray, t_cam *camera, double cur_pos);

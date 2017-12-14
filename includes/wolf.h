@@ -58,4 +58,11 @@ void	get_tex_x(t_ray *ray);
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);
+
+/*
+** floor_casting
+*/
+
+void		floor_casting(t_env *env, t_ray *ray, int pos);
+
 #endif
