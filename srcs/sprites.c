@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 18:25:22 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:10:39 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,12 @@ static void		sprite_calc(t_cam *cam, t_sprite *sprite)
 		sprite->draw_end_x = WIDTH - 1;
 }
 
-static void	swap_ptr(void **ptr1, void **ptr2)
-{
-	void *tmp;
-
-	tmp = *ptr1;
-	*ptr1 = *ptr2;
-	*ptr2 = tmp;
-}
-
 void		sort_sprites(int *order, double *dist, int nb)
 {
 	int i;
 	int count;
+	int tmp;
+	double tmp2;
 
 	count = 0;
 	while (count < nb)
@@ -122,8 +115,17 @@ void		sort_sprites(int *order, double *dist, int nb)
 		{
 			if (dist[i] < dist[i + 1])
 			{
-				swap_ptr((void**)&dist[i], (void**)&dist[i + 1]);
-				swap_ptr((void**)&order[i], (void**)&order[i + 1]);
+				//printf("swap between : %f and %f\n", sprites[i].real_dist, sprites[i + 1].real_dist);
+				//printf("%p and %p\n", &sprites[i], &sprites[i + 1]);
+				//swap_ptr((void**)&dist[i], (void**)&dist[i + 1]);
+				tmp = order[i];
+				order[i] = order[i + 1];
+				order[i + 1] = tmp;
+
+				tmp2 = dist[i];
+				dist[i] = dist[i + 1];
+				dist[i + 1] = tmp2;
+				//swap_ptr((void**)&sprites[i], (void**)&sprites[i + 1]);
 			}
 			i++;
 		}
@@ -140,6 +142,8 @@ void		sprite_casting(t_env *env, t_cam *cam)
 	while (++i < env->nb_sprite)
 	{
 		env->sprites_order[i] = i;
+		//env->sprites[i].real_dist = ((cam->pos_x - env->sprites[i].x) * (cam->pos_x - env->sprites[i].x) + 
+		//(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 		env->sprites_distance[i] = ((cam->pos_x - env->sprites[i].x) * (cam->pos_x - env->sprites[i].x) + 
 		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 	}
