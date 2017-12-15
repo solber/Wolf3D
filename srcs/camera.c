@@ -37,12 +37,16 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
 	//if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
 	//	&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
-	if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
+	/*if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
 	map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
 	{
 		cam->pos_x += cam->dir_x * speed;
 		cam->pos_y += cam->dir_y * speed;
-	}
+	}*/
+	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0)
+		cam->pos_x += cam->dir_x * speed;
+	if (map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+		cam->pos_y += cam->dir_y * speed;
 }
 
 /*
@@ -53,12 +57,16 @@ void			cam_backward(t_cam *cam, t_map *map, double speed)
 {
 	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed); // eventual position if i walk X
 	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed); // Eventual position if i walk on Y
-	if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
-	map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
-	{
+	//if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
+	//map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
+	//{
+//		cam->pos_x -= cam->dir_x * speed;
+	//	cam->pos_y -= cam->dir_y * speed;
+//	}
+	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0)
 		cam->pos_x -= cam->dir_x * speed;
+	if (map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
 		cam->pos_y -= cam->dir_y * speed;
-	}
 }
 
 /*
