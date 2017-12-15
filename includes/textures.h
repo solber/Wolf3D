@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 10:27:46 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 14:33:48 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
 
-# define NB_TEXTURES 10
+# define NB_TEXTURES 11
 
 typedef struct	s_text
 {

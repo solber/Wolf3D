@@ -33,14 +33,13 @@ typedef struct	s_env
 	char		*tmp;
 	int 		roof;
 	int 		floor;
-	clock_t		old_frame;
-	clock_t		frame;
 	t_inputs	inputs;
 	t_cam		cam;
 	t_ray		ray;
 	t_map		map;
 	t_text		textures[NB_TEXTURES];
-	t_sprite	sprites[NB_SPRITES];
+	int			nb_sprite; //recup dans map
+	t_sprite	*sprites; // tableau qui contient les sprites (malloc)
 	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
 	//int			sprites_ordre[NB_SPRITES];
 	//double		sprites_distance[NB_SPRITES];
@@ -53,16 +52,12 @@ void			img_put_px(t_env *env, unsigned long color, int x, int y);
 void			ray_display(t_env *env, t_ray *ray, int pos, int height);
 void			ft_exit(int error);
 
+
 /*
 ** fonctions de textures
 */
 
 void	get_tex_x(t_ray *ray);
-
-/*
-** fonctions de textures
-*/
-
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);

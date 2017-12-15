@@ -21,8 +21,9 @@ t_env			*ft_use_env(int action, char *filename)
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
 			load_text(env, env->textures);
-			init_sprites(env->sprites);
 			map_init(&(env->map), filename);
+			env->nb_sprite = 2; // variable a recupere dans map
+			init_sprites(&(env->sprites), env->nb_sprite);
 			cam_init(&(env->cam), 66, 0);
 		}
 		else
@@ -41,9 +42,6 @@ t_env			*ft_use_env(int action, char *filename)
 
 void			img_put_px(t_env *env, unsigned long color, int x, int y) //why unsigned long ?? => int
 {
-	// si on veut enlever le vert pour transparence (ne marche pas sur les murs car rien derriere)
-	//if (color == 0xFF00)
-	//	return ;
 	env->tmp[y * env->sl + x * env->bpp / 8] = (color & 0xFF);
 	env->tmp[y * env->sl + x * env->bpp / 8 + 1] = (color & 0xFF00) >> 8;
 	env->tmp[y * env->sl + x * env->bpp / 8 + 2] = (color & 0xFF0000) >> 16;
@@ -77,7 +75,6 @@ static void		vertical_draw(t_env *env, int x)
 	env->z_buffer[x] = env->ray.wall_dist; // set le buffer pour la distance des murs
 	ray_display(env, &(env->ray), x, env->height);
 	floor_casting(env, &(env->ray), x);
-	sprite_casting(env, &(env->cam));
 }
 
 /*debug*/
@@ -102,7 +99,9 @@ int				expose_hook(void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	env->frame = env->old_frame;
+	if (!env->inputs.left && !env->inputs.right && !env->inputs.up && !env->inputs.down && !env->inputs.sleft && !env->inputs.sright) // no needs de recalc si on a pas bouger
+		return (0);
+	usleep(10000); // delay pour laisser respirer le proc, tu peux modifier cette valeur si tu considere que ca va pas assez vite :p
 	if (env)
 	{
 		env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
@@ -112,6 +111,7 @@ int				expose_hook(void *param)
 			vertical_draw(env, x);
 			x++;
 		}
+		sprite_casting(env, &(env->cam));
 		input_action(env);
 		//print_map(env->map);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);

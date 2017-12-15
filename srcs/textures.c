@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 10:24:42 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 14:34:24 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures
 	get_text(env, textures, "textures/ground.xpm", 7);
 	get_text(env, textures, "textures/chest.xpm", 8);
 	get_text(env, textures, "textures/diamond.xpm", 9);
+	get_text(env, textures, "textures/dickman.xpm", 10);
 }
 
 /*
