@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 17:54:46 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 10:27:46 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ typedef struct	s_text
 	int			sl;
 	int			edn;
 }				t_text;
+
 #endif

@@ -4,7 +4,7 @@
 
 typedef struct	s_cam
 {
-	double		pos_x;
+	double		pos_x; // position dans la map
 	double		pos_y;
 	double		dir_x;
 	double		dir_y;

@@ -21,6 +21,7 @@ t_env			*ft_use_env(int action, char *filename)
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
 			load_text(env, env->textures);
+			init_sprites(env->sprites);
 			map_init(&(env->map), filename);
 			cam_init(&(env->cam), 66, 0);
 		}
@@ -38,8 +39,11 @@ t_env			*ft_use_env(int action, char *filename)
 ** on fou le pixel de couleur au bon endroit (decallage binaire pour recup le g et r)
 */
 
-void			img_put_px(t_env *env, unsigned long color, int x, int y)
+void			img_put_px(t_env *env, unsigned long color, int x, int y) //why unsigned long ?? => int
 {
+	// si on veut enlever le vert pour transparence (ne marche pas sur les murs car rien derriere)
+	//if (color == 0xFF00)
+	//	return ;
 	env->tmp[y * env->sl + x * env->bpp / 8] = (color & 0xFF);
 	env->tmp[y * env->sl + x * env->bpp / 8 + 1] = (color & 0xFF00) >> 8;
 	env->tmp[y * env->sl + x * env->bpp / 8 + 2] = (color & 0xFF0000) >> 16;
@@ -70,8 +74,20 @@ static void		vertical_draw(t_env *env, int x)
 	ray_init(&(env->ray), &(env->cam), cur_pos);
 	ray_side_dist(&(env->ray));
 	ray_dda(&(env->ray), &(env->map), !env->inputs.wall);
+	env->z_buffer[x] = env->ray.wall_dist; // set le buffer pour la distance des murs
 	ray_display(env, &(env->ray), x, env->height);
 	floor_casting(env, &(env->ray), x);
+	sprite_casting(env, &(env->cam));
+}
+
+/*debug*/
+
+void	print_buffer(double *z_buffer)
+{
+	for (int i = 0; i < WIDTH; i++)
+	{
+		printf("%.2f ||", z_buffer[i]);
+	}
 }
 
 /*
@@ -86,6 +102,7 @@ int				expose_hook(void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
+	env->frame = env->old_frame;
 	if (env)
 	{
 		env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
@@ -99,7 +116,7 @@ int				expose_hook(void *param)
 		//print_map(env->map);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin));
+		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin)); // free !
 	}
 	return (0);
 }

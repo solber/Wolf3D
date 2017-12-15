@@ -20,7 +20,7 @@ void			ray_init(t_ray *ray, t_cam *camera, double cur_pos)
 }
 
 /*
-** icalcul step et taille distance
+** calcul step et taille distance
 */
 
 void			ray_side_dist(t_ray *ray)

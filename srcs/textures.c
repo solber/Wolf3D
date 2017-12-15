@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/14 17:36:25 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 10:24:42 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** fonction generique pour load une texture et remplir la strucutre
 */
 
-static void		get_text(t_env *env, t_text *textures, char *path, int index)
+void		get_text(t_env *env, t_text *textures, char *path, int index)
 {
 	textures[index].text_ptr = mlx_xpm_file_to_image(env->mlx_ptr,
 	path, &textures[index].w, &textures[index].h);
@@ -30,7 +30,7 @@ static void		get_text(t_env *env, t_text *textures, char *path, int index)
 ** Load toutes les textures, toutes les memes ici
 */
 
-void			load_text(t_env *env, t_text *textures)
+void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures la fin du prog
 {
 	get_text(env, textures, "textures/wall.xpm", 2);
 	get_text(env, textures, "textures/gmonnier.xpm", 3);
@@ -56,14 +56,16 @@ void			load_text(t_env *env, t_text *textures)
 int		get_pixel_from_texture(t_env *env, t_ray *ray)
 {
 	int text_index;
+	int color;
 
 	text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
 	//assombri les couleurs pour side == 1 (modifiable)
+	color = env->textures[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
+	if (color == 0xFF00)
+		return (0xFF00);
 	if (ray->side == 1)
-		return ((env->textures[text_index].data[TEXT_HEIGHT *
-		ray->tex_y + ray->tex_x] >> 1) & 0x7F7F7F);
-	return (env->textures[text_index].data[TEXT_HEIGHT *
-	ray->tex_y + ray->tex_x]);
+		return ((color >> 1) & 0x7F7F7F);
+	return (color);
 }
 
 void	get_tex_x(t_ray *ray)

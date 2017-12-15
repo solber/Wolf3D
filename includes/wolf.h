@@ -6,6 +6,8 @@
 # include "camera.h"
 # include "ray.h"
 # include "textures.h"
+# include "sprites.h"
+# include "time.h"
 
 /*debug*/
 
@@ -25,17 +27,23 @@ typedef struct	s_env
 	int			bpp;
 	int			sl;
 	int			edn;
-	int			*img;
-	int 		*moiimg;
-	int 		*moiimgdata;
+	void		*img; // void* mec, pourquoi int?
+	//int 		*moiimg;
+	//int 		*moiimgdata;
 	char		*tmp;
 	int 		roof;
 	int 		floor;
+	clock_t		old_frame;
+	clock_t		frame;
 	t_inputs	inputs;
 	t_cam		cam;
 	t_ray		ray;
 	t_map		map;
 	t_text		textures[NB_TEXTURES];
+	t_sprite	sprites[NB_SPRITES];
+	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
+	//int			sprites_ordre[NB_SPRITES];
+	//double		sprites_distance[NB_SPRITES];
 }				t_env;
 
 t_env			*ft_use_env(int action, char *filename);
@@ -65,4 +73,9 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray);
 
 void		floor_casting(t_env *env, t_ray *ray, int pos);
 
+/*
+** sprites
+*/
+
+void		sprite_casting(t_env *env, t_cam *cam);
 #endif
