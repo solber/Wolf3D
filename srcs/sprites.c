@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 15:57:12 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 16:41:23 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@
 
 void		init_sprites(t_sprite **sprites, int nb)
 {
+	t_env *env;
+
+	env = ft_use_env(-1, 0);
 	*sprites = (t_sprite*)ft_memalloc(sizeof(t_sprite) * nb); //il faudra free
+	env->sprites_order = (int*)ft_memalloc(sizeof(int) * nb);
+	env->sprites_distance = (double*)ft_memalloc(sizeof(double) * nb);
 
 	(*sprites)[0].x = 9.5;
-	(*sprites)[0].y = 3.5;
+	(*sprites)[0].y = 4.5;
 	(*sprites)[0].text_index = 8;
-	(*sprites)[1].x = 10.5;
+	(*sprites)[1].x = 9.5;
 	(*sprites)[1].y = 3.5;
 	(*sprites)[1].text_index = 10;
 }
@@ -83,21 +88,59 @@ static void		sprite_calc(t_cam *cam, t_sprite *sprite)
 		sprite->draw_end_x = WIDTH - 1;
 }
 
+static void	swap_ptr(void **ptr1, void **ptr2)
+{
+	void *tmp;
+
+	tmp = *ptr1;
+	*ptr1 = *ptr2;
+	*ptr2 = tmp;
+}
+
+void		sort_sprites(int *order, double *dist, int nb)
+{
+	int i;
+	int count;
+
+	count = 0;
+	while (count < nb)
+	{
+		i = 0;
+		while (i < nb - 1)
+		{
+			if (dist[i] < dist[i + 1])
+			{
+				swap_ptr((void**)&dist[i], (void**)&dist[i + 1]);
+				swap_ptr((void**)&order[i], (void**)&order[i + 1]);
+			}
+			i++;
+		}
+		count++;
+	}
+}
+
 void		sprite_casting(t_env *env, t_cam *cam)
 {
 	int i; 
 
-	//TO DO : sort_sprites
-	
+	//sort les sprites, de tel maniere qu on imprime les pres en dernier, donc devant les autres
+	i = -1;
+	while (++i < env->nb_sprite)
+	{
+		env->sprites_order[i] = i;
+		env->sprites_distance[i] = ((cam->pos_x - env->sprites[i].x) * (cam->pos_x - env->sprites[i].x) + 
+		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
+	}
+	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
 	//boucle sur chaque sprite pour le dessiner
 	i = -1;
 	while (++i < env->nb_sprite)
 	{
 		// pour quand on effacera des sprites, on verif que y'en a bien un a dessiner
-		if (&(env->sprites[i]))
+		if (&(env->sprites[env->sprites_order[i]]))
 		{
-			sprite_calc(cam, &(env->sprites[i]));
-			sprite_draw(env, &(env->sprites[i]));
+			sprite_calc(cam, &(env->sprites[env->sprites_order[i]]));
+			sprite_draw(env, &(env->sprites[env->sprites_order[i]]));
 		}
 	}
 }

@@ -41,8 +41,8 @@ typedef struct	s_env
 	int			nb_sprite; //recup dans map
 	t_sprite	*sprites; // tableau qui contient les sprites (malloc)
 	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
-	//int			sprites_ordre[NB_SPRITES];
-	//double		sprites_distance[NB_SPRITES];
+	int			*sprites_order;
+	double		*sprites_distance;
 }				t_env;
 
 t_env			*ft_use_env(int action, char *filename);
@@ -73,4 +73,5 @@ void		floor_casting(t_env *env, t_ray *ray, int pos);
 */
 
 void		sprite_casting(t_env *env, t_cam *cam);
+void		init_sprites(t_sprite **sprites, int nb);
 #endif

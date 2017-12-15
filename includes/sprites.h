@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 15:57:02 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 16:22:56 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ typedef struct		s_sprite
 	int				height;
 	int				screen_x;
 }					t_sprite;
-
 void		init_sprites(t_sprite **sprites, int nb);
 #endif
