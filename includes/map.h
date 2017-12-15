@@ -12,6 +12,7 @@ typedef struct	s_map
 	int 		hited_obj_y;
 	int 		coin;
 	int			*data;
+	int			*initial_map;
 }				t_map;
 
 void			map_init(t_map *map, char *filename);

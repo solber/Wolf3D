@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 16:22:56 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 18:17:22 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct		s_sprite
 {
 	double			x;
 	double			y;
+	int				del; // pour savoir si on a recup le sprite, de base 0
 	int				text_index;
 	double			real_x; //coordonnees par rapport au joueurs(camera)
 	double			real_y;

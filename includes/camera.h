@@ -19,4 +19,5 @@ void			cam_forward(t_cam *cam, t_map *map, double speed);
 void			cam_backward(t_cam *cam, t_map *map, double speed);
 void			cam_left(t_cam *cam, double speed);
 int				get_collision(int x, int y, t_map *map);
+int				check_collision(int texture_hited, t_map *map);
 #endif

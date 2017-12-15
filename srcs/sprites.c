@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 16:41:23 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/15 18:25:22 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,30 @@
 void		init_sprites(t_sprite **sprites, int nb)
 {
 	t_env *env;
+	int i;
+	int index;
 
 	env = ft_use_env(-1, 0);
 	*sprites = (t_sprite*)ft_memalloc(sizeof(t_sprite) * nb); //il faudra free
 	env->sprites_order = (int*)ft_memalloc(sizeof(int) * nb);
 	env->sprites_distance = (double*)ft_memalloc(sizeof(double) * nb);
 
-	(*sprites)[0].x = 9.5;
-	(*sprites)[0].y = 4.5;
-	(*sprites)[0].text_index = 8;
-	(*sprites)[1].x = 9.5;
-	(*sprites)[1].y = 3.5;
-	(*sprites)[1].text_index = 10;
+	i = -1;
+	index = 0;
+	while (++i < env->map.w * env->map.h)
+	{
+		if (env->map.data[i] >= SPRITES_TEXT)
+		{
+			(*sprites)[index].x = i % env->map.w + 0.5;
+			(*sprites)[index].y = i / env->map.w + 0.5;
+			(*sprites)[index].del = 0;
+			(*sprites)[index].text_index = env->map.data[i];
+			//printf("%.2f, %.2f\n", (*sprites)[index].x, (*sprites)[index].y);
+			//printf("%d\n", (*sprites)[index].text_index);
+			env->map.data[i] = 0;
+			index++;
+		}
+	}
 }
 
 static void		sprite_draw(t_env *env, t_sprite *sprite)
@@ -137,7 +149,7 @@ void		sprite_casting(t_env *env, t_cam *cam)
 	while (++i < env->nb_sprite)
 	{
 		// pour quand on effacera des sprites, on verif que y'en a bien un a dessiner
-		if (&(env->sprites[env->sprites_order[i]]))
+		if (env->sprites[env->sprites_order[i]].del == 0)
 		{
 			sprite_calc(cam, &(env->sprites[env->sprites_order[i]]));
 			sprite_draw(env, &(env->sprites[env->sprites_order[i]]));

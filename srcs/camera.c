@@ -33,19 +33,18 @@ void			cam_init(t_cam *cam, double fov, int onlyfov)
 
 void			cam_forward(t_cam *cam, t_map *map, double speed)
 {
+	int x_texture_hited;
+	int y_texture_hited;
+
+
 	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed);
 	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
-	//if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0
-	//	&& map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
-	/*if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
-	map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
-	{
+	x_texture_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
+	y_texture_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
+
+	if (check_collision(x_texture_hited, map))
 		cam->pos_x += cam->dir_x * speed;
-		cam->pos_y += cam->dir_y * speed;
-	}*/
-	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0)
-		cam->pos_x += cam->dir_x * speed;
-	if (map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+	if (check_collision(y_texture_hited, map))
 		cam->pos_y += cam->dir_y * speed;
 }
 
@@ -55,6 +54,9 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 
 void			cam_backward(t_cam *cam, t_map *map, double speed)
 {
+	int x_texture_hited;
+	int y_texture_hited;
+
 	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed); // eventual position if i walk X
 	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed); // Eventual position if i walk on Y
 	//if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
@@ -63,9 +65,13 @@ void			cam_backward(t_cam *cam, t_map *map, double speed)
 //		cam->pos_x -= cam->dir_x * speed;
 	//	cam->pos_y -= cam->dir_y * speed;
 //	}
-	if (map_get(map, map->hited_obj_x, (int)cam->pos_y) == 0)
+	x_texture_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];//map_get(map, map->hited_obj_x, (int)cam->pos_y);
+	y_texture_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];//map_get(map, (int)cam->pos_x, map->hited_obj_y);
+	//x_texture_hited = map_get(map, map->hited_obj_x, (int)cam->pos_y);
+	//y_texture_hited = map_get(map, (int)cam->pos_x, map->hited_obj_y);
+	if (check_collision(x_texture_hited, map))
 		cam->pos_x -= cam->dir_x * speed;
-	if (map_get(map, (int)cam->pos_x, map->hited_obj_y) == 0)
+	if (check_collision(y_texture_hited, map))
 		cam->pos_y -= cam->dir_y * speed;
 }
 
