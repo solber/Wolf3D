@@ -27,6 +27,7 @@
 # define SPRITES_TEXT 20
 # define CHEST 21
 # define DICKMAN 22
+# define BARREL 23
 
 # define NB_TEXTURES 30
 

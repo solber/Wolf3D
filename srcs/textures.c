@@ -41,6 +41,8 @@ void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures
 	get_text(env, textures, "textures/diamond.xpm", SECRET_PATH);
 	get_text(env, textures, "textures/chest.xpm", CHEST);
 	get_text(env, textures, "textures/dickman.xpm", DICKMAN);
+	get_text(env, textures, "textures/barrel.xpm", BARREL);
+
 }
 
 /*
