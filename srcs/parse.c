@@ -7,6 +7,14 @@ void ft_open(t_map *map, char *filename)
 		ft_exit(2);
 }
 
+static void ft_get_nb_sprites(char *nb)
+{
+	t_env *env;
+
+	env = ft_use_env(-1, 0);
+	env->nb_sprite = ft_atoi(nb);
+}
+
 void ft_get_size(t_map *map)
 {
 	char 	**splited;
@@ -21,11 +29,11 @@ void ft_get_size(t_map *map)
 			splited = ft_strsplit(line, ' ');
 			map->w = ft_atoi(splited[0]);
 			map->h = ft_atoi(splited[1]);
+			ft_get_nb_sprites(splited[2]);
 			free(splited);
 			free(line);
 			break;
 		}
-
 		if (line)
 			free(line);
 		count++;
