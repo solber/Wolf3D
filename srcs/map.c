@@ -10,11 +10,15 @@ void 			ft_exit(int error)
 {
 	ft_use_env(0, 0);
 	if (error == 1)
-		ft_putendl("Error : Can't malloc map.");
+		ft_putendl("😡 Error : Can't malloc map.");
 	else if (error == 2)
-		ft_putendl("Error : Can't open file.");
+		ft_putendl("😡 Error : Can't open file.");
 	else if (error == 3)
-		ft_putendl("Error : Incorrect map size.");
+		ft_putendl("😡 Error : Incorrect map size.");
+	else if (error == 4)
+		ft_putendl("😡 Error : Can't open folder AND/OR empty files.");
+	else if (error == 5)
+		ft_putendl("😡 Error : Can't close the file.");
 	exit(-1);
 }
 
