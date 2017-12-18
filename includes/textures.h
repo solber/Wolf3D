@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 18:28:11 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 11:57:07 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define WALL_BRICK 5
 # define DIAMOND 6
 # define GROUND 7
+# define POMP 8
 # define SECRET_PATH 9
 # define SPRITES_TEXT 20
 # define CHEST 21

@@ -88,6 +88,32 @@ void	print_buffer(double *z_buffer)
 }
 
 /*
+** a mettre ailleurs, fonction de draw du fusil
+** amelioration possible : une grosse partie de l'image est verte, donc on peut skipper tout ca
+*/
+
+void			draw_gun(t_env *env, t_text texture)
+{
+	int x;
+	int y;
+	int x_start;
+	int y_start;
+
+	y = -1;
+	x_start = env->width / 2 - texture.w / 2;
+	y_start = env->height - texture.h;
+	while (++y < texture.h)
+	{
+		x = -1;
+		while (++x < texture.w)
+		{
+			if (texture.data[x + y * texture.w] != 0xFF00)
+				img_put_px(env, texture.data[x + y * texture.w], x + x_start, y + y_start);
+		}
+	}
+}
+
+/*
 ** ici on itere pour draw ligne par ligne, expose_hook btw gere le drag and drop de la fenetre
 ** apres avoir tous draw, on balance l'image
 */
@@ -115,6 +141,7 @@ int				expose_hook(void *param)
 		//if (!env->inputs.left && !env->inputs.right && !env->inputs.up && !env->inputs.down && !env->inputs.sleft && !env->inputs.sright) // no needs de recalc si on a pas bouger
 		//	return (0);
 		//print_map(env->map);
+		draw_gun(env, env->textures[POMP]);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
 		//printf("%d\n", i++);
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
