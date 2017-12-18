@@ -155,7 +155,7 @@ int				expose_hook(void *param)
 		if (env->timer.delta >= 1)
 			draw_all(env);
 		//updategame every 1/10 seconde
-		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
+		if (env->timer.timer >= CLOCKS_PER_SEC / 5)
 		{
 			update_game(env);
 			//print_map(env->map);

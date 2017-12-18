@@ -6,12 +6,14 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 16:58:40 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 19:12:28 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPRITES_H
 # define SPRITES_H
+
+# include "map.h"
 
 # define SPRITE_SPEED 0.1
 # define HIT_BOX 0.5
@@ -38,6 +40,9 @@ typedef struct		s_sprite
 	int				height;
 	int				screen_x;
 	double			real_dist;
+	int				timer_dead; //compteur avant mort
+	int				type;
 }					t_sprite;
 void		init_sprites(t_sprite **sprites, int nb);
+void		del_sprite(t_map *map, int pos);
 #endif

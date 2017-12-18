@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 18:25:00 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 19:44:43 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 	int save_x;
 	int avoid_wall;
 
-	if ((sprite->text_index == DICKMAN || sprite->text_index == DICKMAN_B) && sprite->del == 0)
+	if (sprite->type == DICKMAN && sprite->del == 0 && sprite->timer_dead == 0)
 	{
 		save_x = (int)sprite->x;
 		//update map
@@ -79,6 +79,22 @@ void		update_game(t_env *env)
 	while (++i < env->nb_sprite)
 	{
 		move_sprite(&(env->map), &(env->sprites[i]));
+		if (env->sprites[i].timer_dead > 0)
+		{
+			env->sprites[i].timer_dead--;
+			if (env->sprites[i].timer_dead % 2)
+				env->sprites[i].del = 1;
+			else
+			{
+				env->sprites[i].del = 0;
+				env->sprites[i].text_index = DICKMAN_D;
+			}
+			if (env->sprites[i].timer_dead == 0)
+			{
+				env->sprites[i].del = 1;
+				env->map.initial_map[(int)env->sprites[i].x + (int)env->sprites[i].y * env->map.w] = 0;
+			}
+		}
 	}
 	//printf("FPS : %d\n", env->timer.ticks * 10);
 	env->timer.ticks = 0;

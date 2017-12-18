@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 14:14:16 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 19:44:12 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define CHEST 21
 # define DICKMAN 22
 # define DICKMAN_B 23
+# define DICKMAN_D 29
 # define BARREL 24
 
 # define NB_TEXTURES 30

@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 17:56:36 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 19:22:40 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void		init_sprites(t_sprite **sprites, int nb)
 			(*sprites)[index].del = 0;
 			(*sprites)[index].text_index = env->map.data[i];
 			(*sprites)[index].dir_x = -SPRITE_SPEED;
+			(*sprites)[index].type = env->map.data[i];
+			(*sprites)[index].timer_dead = 0;
 			//printf("%.2f, %.2f\n", (*sprites)[index].x, (*sprites)[index].y);
 			//printf("%d\n", (*sprites)[index].text_index);
 			env->map.data[i] = 0;
@@ -151,7 +153,7 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 		//gestion de la collision avec le perso
 		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del && 
-		(env->sprites[i].text_index == DICKMAN || env->sprites[i].text_index == DICKMAN_B)) // tres lourd, mettre une variable pour ca?
+		env->sprites[i].type == DICKMAN)
 			env->is_alive = 0;
 	}
 	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
@@ -168,7 +170,6 @@ void		sprite_casting(t_env *env, t_cam *cam)
 	}
 }
 
-//moche
 void		del_sprite(t_map *map, int pos)
 {
 	t_env *env;
@@ -180,7 +181,8 @@ void		del_sprite(t_map *map, int pos)
 	{
 		if ((int)env->sprites[i].y * map->w + (int)env->sprites[i].x == pos)
 		{
-			env->sprites[i].del = 1;
+			//env->sprites[i].del = 1;
+			env->sprites[i].timer_dead = 10;
 			map->initial_map[pos] = 0;
 		}
 	}
