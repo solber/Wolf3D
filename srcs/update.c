@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 17:58:31 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 18:25:00 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ void		get_next_time(t_timer *timer)
 	timer->last_time = timer->now;
 }
 
+/*
+** recupere la texture du dickman en fonction de la position du joueur en y et du sens de marche
+*/
+
+void		get_dickman_text(t_sprite *sprite)
+{
+	t_env *env;
+
+	env = ft_use_env(-1, 0);
+	if (env->cam.pos_y < sprite->y)
+		sprite->text_index = sprite->dir_x < 0 ? DICKMAN_B : DICKMAN;
+	else
+		sprite->text_index = sprite->dir_x < 0 ? DICKMAN_B : DICKMAN;
+}
+
 void		move_sprite(t_map *map, t_sprite *sprite)
 {
 	int save_x;
@@ -46,7 +61,7 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 			if (map_get(map, (int)(sprite->x + sprite->dir_x + avoid_wall), (int)sprite->y) > 0) // si le sprite rentre dans un mur
 			{
 				sprite->dir_x = -sprite->dir_x; // on change de sens
-				sprite->text_index = sprite->dir_x > 0 ? DICKMAN_B : DICKMAN; //tout depend du sens dans lequel est le joueur. A GERER
+				get_dickman_text(sprite);
 			}
 			// on met a jour la map
 			map->initial_map[(int)sprite->y * map->w + save_x] = 0;

@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 14:14:47 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 18:34:17 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 	if (color == 0xFF00)
 		return (0xFF00);
 	//assombri les couleurs pour side == 1 (modifiable)
-	if (ray->side == 1)
+	if (ray->side > 1)
 		return ((color >> 1) & 0x7F7F7F);
 	return (color);
 }
