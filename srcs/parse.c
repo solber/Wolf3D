@@ -76,7 +76,6 @@ void ft_set_map(t_map *map)
 	j = 0;
 	while (get_next_line(map->fd, &line) && count < map->h)
 	{
-		ft_putendl(line);
 		splited = ft_strsplit(line, ' ');
 		while (splited[j])
 		{

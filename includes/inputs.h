@@ -24,6 +24,8 @@
 
 # define FOVUP 69
 # define FOVDOWN 78
+
+# define FIRE 49
 #endif
 
 typedef struct	s_inputs

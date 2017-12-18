@@ -1,5 +1,6 @@
 #include <map.h>
 #include <wolf.h>
+#include <error.h>
 /*
 ** ici on define une map et on remplis notre struct map avec cette derniere
 ** FF = bloc plein, 00 bloc vide, 02 un mur, 01 un bloc vide bloquant le joueur
@@ -19,6 +20,10 @@ void 			ft_exit(int error)
 
 void			map_init(t_map *map, char *filename)
 {
+	ft_open(map, filename);
+	ft_check_for_error(map);
+	if ((close(map->fd) < 0))
+		ft_exit(5);
 	ft_open(map, filename);
 	ft_get_size(map);
 	ft_get_tex(map);

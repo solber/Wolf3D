@@ -8,6 +8,9 @@ typedef struct	s_map
 	int 		w;
 	int 		h;
 	int 		fd;
+	char		*line;
+	char		**splited;
+	char		linenb;
 	int 		hited_obj_x;
 	int 		hited_obj_y;
 	int 		coin;
