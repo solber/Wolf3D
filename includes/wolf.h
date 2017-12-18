@@ -44,6 +44,7 @@ typedef struct	s_env
 	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
 	int			*sprites_order;
 	double		*sprites_distance;
+	int			is_alive;
 }				t_env;
 
 t_env			*ft_use_env(int action, char *filename);
@@ -85,4 +86,6 @@ void		del_sprite(t_map *map, int pos);
 void		update_game(t_env *env);
 void		timer_init(t_timer *timer);
 void		get_next_time(t_timer *timer);
+
+void		reset(t_env *env);
 #endif

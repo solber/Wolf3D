@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 15:40:44 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 17:27:43 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ void		sort_sprites(int *order, double *dist, int nb)
 	}
 }
 
+
+
 void		sprite_casting(t_env *env, t_cam *cam)
 {
 	int i; 
@@ -147,6 +149,9 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		//(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 		env->sprites_distance[i] = ((cam->pos_x - env->sprites[i].x) * (cam->pos_x - env->sprites[i].x) + 
 		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
+		//gestion de la collision avec le perso
+		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del)
+			env->is_alive = 0;
 	}
 	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
 	//boucle sur chaque sprite pour le dessiner

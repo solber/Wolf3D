@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 15:27:40 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 16:58:40 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SPRITES_H
 
 # define SPRITE_SPEED 0.1
+# define HIT_BOX 0.5
 
 typedef struct		s_sprite
 {

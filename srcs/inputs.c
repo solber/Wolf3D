@@ -56,9 +56,9 @@ void			input_action(t_env *env)
 
 static void		key_hook_press_cam(t_env *env, int keycode)
 {
-	if (env != 0 && keycode == FOVUP)
+	if (keycode == FOVUP)
 		cam_init(&(env->cam), 1, 1);
-	if (env != 0 && keycode == FOVDOWN)
+	if (keycode == FOVDOWN)
 		cam_init(&(env->cam), -1, 1);
 }
 
@@ -75,21 +75,26 @@ int				key_hook_press(int keycode, void *param)
 	//printf("%d\n", keycode);
 	if (keycode == 53)
 		exit_hook(param);
-	if (env != 0 && keycode == FORWARD)
-		env->inputs.up = 1;
-	if (env != 0 && keycode == BACKWARD)
-		env->inputs.down = 1;
-	if (env != 0 && keycode == LEFT)
-		env->inputs.left = 1;
-	if (env != 0 && keycode == RIGHT)
-		env->inputs.right = 1;
-	if (env != 0 && keycode == STRAFL)
-		env->inputs.sleft = 1;
-	if (env != 0 && keycode == STRAFR)
-		env->inputs.sright = 1;
-	if (env != 0 && keycode == FIRE)
-		env->inputs.fire = 1;
-	key_hook_press_cam(env, keycode);
+	if (keycode == ENTER)
+		reset(env);
+	if (env && env->is_alive)
+	{
+		if (keycode == FORWARD)
+			env->inputs.up = 1;
+		if (keycode == BACKWARD)
+			env->inputs.down = 1;
+		if (keycode == LEFT)
+			env->inputs.left = 1;
+		if (keycode == RIGHT)
+			env->inputs.right = 1;
+		if (keycode == STRAFL)
+			env->inputs.sleft = 1;
+		if (keycode == STRAFR)
+			env->inputs.sright = 1;
+		if (keycode == FIRE)
+			env->inputs.fire = 1;
+		key_hook_press_cam(env, keycode);
+	}
 	return (0);
 }
 
@@ -103,22 +108,25 @@ int				key_hook_release(int keycode, void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	if (env != 0 && keycode == FORWARD)
-		env->inputs.up = 0;
-	if (env != 0 && keycode == BACKWARD)
-		env->inputs.down = 0;
-	if (env != 0 && keycode == LEFT)
-		env->inputs.left = 0;
-	if (env != 0 && keycode == RIGHT)
-		env->inputs.right = 0;
-	if (env != 0 && keycode == STRAFL)
-		env->inputs.sleft = 0;
-	if (env != 0 && keycode == STRAFR)
-		env->inputs.sright = 0;
-	if (env != 0 && keycode == FIRE)
+	if (env && env->is_alive)
 	{
-		env->inputs.fire = 0;
-		env->inputs.can_fire = 1;
+		if (keycode == FORWARD)
+			env->inputs.up = 0;
+		if (keycode == BACKWARD)
+			env->inputs.down = 0;
+		if (keycode == LEFT)
+			env->inputs.left = 0;
+		if (keycode == RIGHT)
+			env->inputs.right = 0;
+		if (keycode == STRAFL)
+			env->inputs.sleft = 0;
+		if (keycode == STRAFR)
+			env->inputs.sright = 0;
+		if (keycode == FIRE)
+		{
+			env->inputs.fire = 0;
+			env->inputs.can_fire = 1;
+		}
 	}
 	return (0);
 }

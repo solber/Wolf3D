@@ -20,12 +20,14 @@ t_env			*ft_use_env(int action, char *filename)
 			env->win_ptr = mlx_new_window(env->mlx_ptr, env->width,
 				env->height, "Wolf3D");
 			env->img = mlx_new_image(env->mlx_ptr, env->width, env->height);
+			env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
 			load_text(env, env->textures);
 			map_init(&(env->map), filename);
 			init_sprites(&(env->sprites), env->nb_sprite);
 			cam_init(&(env->cam), 66, 0);
 			env->inputs.can_fire = 1;
 			timer_init(&(env->timer));
+			env->is_alive = 1;
 		}
 		else
 			action = 0;
@@ -122,7 +124,6 @@ void			draw_all(t_env *env)
 {
 	int	x;
 
-	env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
 	x = -1;
 	while (++x < env->width)
 		vertical_draw(env, x);
@@ -147,15 +148,18 @@ int				expose_hook(void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	if (env)
+	if (env && env->is_alive == 1)
 	{
 		get_next_time(&(env->timer));
 		//draw que quand necessaire pour avoir 60fps;
 		if (env->timer.delta >= 1)
 			draw_all(env);
 		//updategame every 1/10 seconde
-		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
+		if (env->timer.timer >= CLOCKS_PER_SEC)
+		{
 			update_game(env);
+			//print_map(env->map);
+		}
 		/*if (env->timer.timer >= CLOCKS_PER_SEC)
 		{
 			printf("FPS : %d\n", env->timer.ticks);
@@ -165,6 +169,19 @@ int				expose_hook(void *param)
 		}*/
 	}
 	return (0);
+}
+
+
+void			reset(t_env *env)
+{
+	env->is_alive = 1;
+	printf("reset\n");
+	//map_init(&(env->map), filename);
+	//init_sprites(&(env->sprites), env->nb_sprite);
+	cam_init(&(env->cam), 66, 0);
+	env->inputs.can_fire = 1;
+	timer_init(&(env->timer));
+	env->is_alive = 1;
 }
 
 /*

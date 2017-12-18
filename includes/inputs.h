@@ -13,6 +13,7 @@
 
 # define FOVUP 65451
 # define FOVDOWN 65453
+# define ENTER 65293
 
 #else
 # define FORWARD 13
