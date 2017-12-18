@@ -45,6 +45,8 @@ void			input_action(t_env *env)
 		cam_forward(&(env->cam), &(env->map), 0.10);
 		cam_right(&(env->cam), -1.57);
 	}
+	if (env->inputs.fire == 1)
+		check_kills(env);
 }
 
 /*
@@ -70,6 +72,7 @@ int				key_hook_press(int keycode, void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
+	//printf("%d\n", keycode);
 	if (keycode == 53)
 		exit_hook(param);
 	if (env != 0 && keycode == FORWARD)
@@ -84,6 +87,8 @@ int				key_hook_press(int keycode, void *param)
 		env->inputs.sleft = 1;
 	if (env != 0 && keycode == STRAFR)
 		env->inputs.sright = 1;
+	if (env != 0 && keycode == FIRE)
+		env->inputs.fire = 1;
 	key_hook_press_cam(env, keycode);
 	return (0);
 }
@@ -110,5 +115,11 @@ int				key_hook_release(int keycode, void *param)
 		env->inputs.sleft = 0;
 	if (env != 0 && keycode == STRAFR)
 		env->inputs.sright = 0;
+	if (env != 0 && keycode == FIRE)
+	{
+		env->inputs.fire = 0;
+		env->inputs.can_fire = 1;
+	}
 	return (0);
 }
+

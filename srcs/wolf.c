@@ -9,7 +9,7 @@ t_env			*ft_use_env(int action, char *filename)
 {
 	static t_env		*env;
 
-	if (action == 1 || action == 2 || action == 3)
+	if (action == 1 || action == 2 || action == 3) // a changer?
 	{
 		env = (t_env*)ft_memalloc(sizeof(t_env));
 		if (env != 0)
@@ -24,6 +24,7 @@ t_env			*ft_use_env(int action, char *filename)
 			map_init(&(env->map), filename);
 			init_sprites(&(env->sprites), env->nb_sprite);
 			cam_init(&(env->cam), 66, 0);
+			env->inputs.can_fire = 1;
 		}
 		else
 			action = 0;
@@ -70,7 +71,7 @@ static void		vertical_draw(t_env *env, int x)
 	cur_pos = (double)x / (double)env->width;
 	ray_init(&(env->ray), &(env->cam), cur_pos);
 	ray_side_dist(&(env->ray));
-	ray_dda(&(env->ray), &(env->map), !env->inputs.wall);
+	ray_dda(&(env->ray), &(env->map), 0);
 	env->z_buffer[x] = env->ray.wall_dist; // set le buffer pour la distance des murs
 	ray_display(env, &(env->ray), x, env->height);
 	floor_casting(env, &(env->ray), x);
@@ -95,12 +96,11 @@ int				expose_hook(void *param)
 {
 	t_env		*env;
 	int			x;
+	//static		i;
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	if (!env->inputs.left && !env->inputs.right && !env->inputs.up && !env->inputs.down && !env->inputs.sleft && !env->inputs.sright) // no needs de recalc si on a pas bouger
-		return (0);
-	usleep(10000); // delay pour laisser respirer le proc, tu peux modifier cette valeur si tu considere que ca va pas assez vite :p
+	usleep(15000); // delay pour laisser respirer le proc, tu peux modifier cette valeur si tu considere que ca va pas assez vite :p
 	if (env)
 	{
 		env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
@@ -110,10 +110,13 @@ int				expose_hook(void *param)
 			vertical_draw(env, x);
 			x++;
 		}
-		sprite_casting(env, &(env->cam));
 		input_action(env);
+		sprite_casting(env, &(env->cam));
+		//if (!env->inputs.left && !env->inputs.right && !env->inputs.up && !env->inputs.down && !env->inputs.sleft && !env->inputs.sright) // no needs de recalc si on a pas bouger
+		//	return (0);
 		//print_map(env->map);
 		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
+		//printf("%d\n", i++);
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
 		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin)); // free !
 	}

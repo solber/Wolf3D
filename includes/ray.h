@@ -28,10 +28,11 @@ typedef struct	s_ray
 	double		floor_y_wall; //x et y de la texture du sol en dessous de la ray
 	int			floor_text_x;
 	int			floor_text_y;
+	int			hit_sprite; //check si la ray a touche un sprite avant un mur
 }				t_ray;
 
 void			ray_init(t_ray *ray, t_cam *camera, double cur_pos);
 void			ray_side_dist(t_ray *ray);
-void			ray_dda(t_ray *ray, t_map *map, int wall_visible);
+void			ray_dda(t_ray *ray, t_map *map, int kill_sprites);
 
 #endif

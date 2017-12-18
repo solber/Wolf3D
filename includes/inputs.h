@@ -9,6 +9,7 @@
 # define RIGHT 100
 # define STRAFL 113
 # define STRAFR 101
+# define FIRE 32
 
 # define FOVUP 65451
 # define FOVDOWN 65453
@@ -33,7 +34,9 @@ typedef struct	s_inputs
 	int			down;
 	int			sleft;
 	int			sright;
-	int			wall;
+	//int			wall; //useless now
+	int			fire;
+	int			can_fire;
 }				t_inputs;
 
 int				key_hook_press(int keycode, void *param);

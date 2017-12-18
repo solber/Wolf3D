@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/15 20:10:39 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 11:46:58 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,47 @@ void		sprite_casting(t_env *env, t_cam *cam)
 			sprite_calc(cam, &(env->sprites[env->sprites_order[i]]));
 			sprite_draw(env, &(env->sprites[env->sprites_order[i]]));
 		}
+	}
+}
+
+//moche
+void		del_sprite(t_map *map, int pos)
+{
+	t_env *env;
+	int i;
+
+	env = ft_use_env(-1, 0);
+	i = -1;
+	while (++i < env->nb_sprite)
+	{
+		if ((env->sprites[i].y - 0.5) * map->w + (env->sprites[i].x - 0.5) == pos)
+		{
+			env->sprites[i].del = 1;
+			map->initial_map[pos] = 0;
+		}
+	}
+}
+
+
+/*
+** gestion du kill, est appelle par mlx_key_hook, une seule fois pour eviter d'overkill Dickman
+*/
+
+int			check_kills(t_env *env)
+{
+	if (env->inputs.can_fire)
+	{
+		printf("check_kills\n");
+		env->ray.hit_sprite = 0;
+		ray_init(&(env->ray), &(env->cam), 0.5);
+		ray_side_dist(&(env->ray));
+		ray_dda(&(env->ray), &(env->map), 1);
+		if (env->ray.hit_sprite == 1)
+		{
+			printf("OMG you've killed Dickman\n");
+			env->ray.hit_sprite = 0;
+			del_sprite(&(env->map), env->ray.map_x + env->ray.map_y * env->map.w);
+		}
+		env->inputs.can_fire = 0;
 	}
 }

@@ -74,4 +74,6 @@ void		floor_casting(t_env *env, t_ray *ray, int pos);
 
 void		sprite_casting(t_env *env, t_cam *cam);
 void		init_sprites(t_sprite **sprites, int nb);
+int			check_kills(t_env *env);
+void		del_sprite(t_map *map, int pos);
 #endif

@@ -51,12 +51,12 @@ void			ray_side_dist(t_ray *ray)
 ** ici c'est le DDA (voir tuto)
 */
 
-void			ray_dda(t_ray *ray, t_map *map, int wall_visible)
+void			ray_dda(t_ray *ray, t_map *map, int kill_sprites)
 {
 	int		hit;
 
 	hit = 0;
-	while (hit == 0)
+	while (hit == 0 && ray->hit_sprite == 0)
 	{
 		if (ray->side_x < ray->side_y)
 		{
@@ -74,7 +74,9 @@ void			ray_dda(t_ray *ray, t_map *map, int wall_visible)
 			if (ray->step_y == 1)
 				ray->side = 3;
 		}
-		if (map_get(map, ray->map_x, ray->map_y) > wall_visible)
+		if (kill_sprites == 1 && map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN)
+			ray->hit_sprite = 1;
+		if (map_get(map, ray->map_x, ray->map_y) > 0)
 			hit = 1;
 	}
 }
