@@ -25,6 +25,7 @@ t_env			*ft_use_env(int action, char *filename)
 			init_sprites(&(env->sprites), env->nb_sprite);
 			cam_init(&(env->cam), 66, 0);
 			env->inputs.can_fire = 1;
+			timer_init(&(env->timer));
 		}
 		else
 			action = 0;
@@ -114,6 +115,28 @@ void			draw_gun(t_env *env, t_text texture)
 }
 
 /*
+** fonction draw (autrefois a l'interieur d'exposehook)
+*/
+
+void			draw_all(t_env *env)
+{
+	int	x;
+
+	env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
+	x = -1;
+	while (++x < env->width)
+		vertical_draw(env, x);
+	input_action(env);
+	sprite_casting(env, &(env->cam));
+	draw_gun(env, env->textures[POMP]);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
+	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin)); // free !
+	env->timer.delta -= 1;
+	env->timer.ticks++;
+}
+
+/*
 ** ici on itere pour draw ligne par ligne, expose_hook btw gere le drag and drop de la fenetre
 ** apres avoir tous draw, on balance l'image
 */
@@ -121,31 +144,25 @@ void			draw_gun(t_env *env, t_text texture)
 int				expose_hook(void *param)
 {
 	t_env		*env;
-	int			x;
-	//static		i;
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	usleep(15000); // delay pour laisser respirer le proc, tu peux modifier cette valeur si tu considere que ca va pas assez vite :p
 	if (env)
 	{
-		env->tmp = mlx_get_data_addr(env->img, &env->bpp, &env->sl, &env->edn);
-		x = 0;
-		while (x < env->width)
+		get_next_time(&(env->timer));
+		//draw que quand necessaire pour avoir 60fps;
+		if (env->timer.delta >= 1)
+			draw_all(env);
+		//updategame every 1/10 seconde
+		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
+			update_game(env);
+		/*if (env->timer.timer >= CLOCKS_PER_SEC)
 		{
-			vertical_draw(env, x);
-			x++;
-		}
-		input_action(env);
-		sprite_casting(env, &(env->cam));
-		//if (!env->inputs.left && !env->inputs.right && !env->inputs.up && !env->inputs.down && !env->inputs.sleft && !env->inputs.sright) // no needs de recalc si on a pas bouger
-		//	return (0);
-		//print_map(env->map);
-		draw_gun(env, env->textures[POMP]);
-		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
-		//printf("%d\n", i++);
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
-		mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin)); // free !
+			printf("FPS : %d\n", env->timer.ticks);
+			env->timer.ticks = 0;
+			env->timer.timer = 0;
+			print_map(env->map);
+		}*/
 	}
 	return (0);
 }

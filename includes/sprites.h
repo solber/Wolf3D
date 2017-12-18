@@ -6,17 +6,21 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 11:10:35 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:27:40 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPRITES_H
 # define SPRITES_H
 
+# define SPRITE_SPEED 0.1
+
 typedef struct		s_sprite
 {
-	double			x;
+	double			x; //coordonnes dans la map
 	double			y;
+	double			dir_x; // vecteur de direction pour ceux qui bougent
+	double			dir_y; // non utiliser en l'etat actuel
 	int				del; // pour savoir si on a recup le sprite, de base 0
 	int				text_index;
 	double			real_x; //coordonnees par rapport au joueur(camera)

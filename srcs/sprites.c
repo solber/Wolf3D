@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 11:46:58 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:40:44 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		init_sprites(t_sprite **sprites, int nb)
 			(*sprites)[index].y = i / env->map.w + 0.5;
 			(*sprites)[index].del = 0;
 			(*sprites)[index].text_index = env->map.data[i];
+			(*sprites)[index].dir_x = -SPRITE_SPEED;
 			//printf("%.2f, %.2f\n", (*sprites)[index].x, (*sprites)[index].y);
 			//printf("%d\n", (*sprites)[index].text_index);
 			env->map.data[i] = 0;
@@ -171,7 +172,7 @@ void		del_sprite(t_map *map, int pos)
 	i = -1;
 	while (++i < env->nb_sprite)
 	{
-		if ((env->sprites[i].y - 0.5) * map->w + (env->sprites[i].x - 0.5) == pos)
+		if ((int)env->sprites[i].y * map->w + (int)env->sprites[i].x == pos)
 		{
 			env->sprites[i].del = 1;
 			map->initial_map[pos] = 0;
@@ -179,12 +180,11 @@ void		del_sprite(t_map *map, int pos)
 	}
 }
 
-
 /*
-** gestion du kill, est appelle par mlx_key_hook, une seule fois pour eviter d'overkill Dickman
+** gestion du kill, une seule fois pour eviter d'overkill Dickman
 */
 
-int			check_kills(t_env *env)
+void		check_kills(t_env *env)
 {
 	if (env->inputs.can_fire)
 	{

@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 11:57:07 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 14:14:16 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define SPRITES_TEXT 20
 # define CHEST 21
 # define DICKMAN 22
-# define BARREL 23
+# define DICKMAN_B 23
+# define BARREL 24
 
 # define NB_TEXTURES 30
 

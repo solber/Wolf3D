@@ -2,12 +2,13 @@
 # define WOLF_H
 # include <mlx.h>
 # include <libft.h>
+# include <time.h>
 # include "inputs.h"
 # include "camera.h"
 # include "ray.h"
 # include "textures.h"
 # include "sprites.h"
-# include "time.h"
+# include "update.h"
 
 /*debug*/
 
@@ -17,6 +18,7 @@
 
 # define WIDTH 640
 # define HEIGHT 480
+# define FPS 60
 
 typedef struct	s_env
 {
@@ -28,8 +30,6 @@ typedef struct	s_env
 	int			sl;
 	int			edn;
 	void		*img; // void* mec, pourquoi int?
-	//int 		*moiimg;
-	//int 		*moiimgdata;
 	char		*tmp;
 	int 		roof;
 	int 		floor;
@@ -38,6 +38,7 @@ typedef struct	s_env
 	t_ray		ray;
 	t_map		map;
 	t_text		textures[NB_TEXTURES];
+	t_timer		timer;
 	int			nb_sprite; //recup dans map
 	t_sprite	*sprites; // tableau qui contient les sprites (malloc)
 	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
@@ -74,6 +75,14 @@ void		floor_casting(t_env *env, t_ray *ray, int pos);
 
 void		sprite_casting(t_env *env, t_cam *cam);
 void		init_sprites(t_sprite **sprites, int nb);
-int			check_kills(t_env *env);
+void		check_kills(t_env *env);
 void		del_sprite(t_map *map, int pos);
+
+/*
+** update
+*/
+
+void		update_game(t_env *env);
+void		timer_init(t_timer *timer);
+void		get_next_time(t_timer *timer);
 #endif

@@ -79,7 +79,7 @@ void			print_map(t_map map)
 	printf("\n");
 	while (i < map.h * map.w)
 	{
-		printf("%d ", map.data[i]);
+		printf("%d ", map.initial_map[i]);
 		i++;
 		if (i % map.w == 0)
 			printf("\n");

@@ -74,7 +74,9 @@ void			ray_dda(t_ray *ray, t_map *map, int kill_sprites)
 			if (ray->step_y == 1)
 				ray->side = 3;
 		}
-		if (kill_sprites == 1 && map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN)
+		if (kill_sprites == 1 &&
+		(map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN ||
+		map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN_B))
 			ray->hit_sprite = 1;
 		if (map_get(map, ray->map_x, ray->map_y) > 0)
 			hit = 1;
