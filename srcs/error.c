@@ -15,6 +15,8 @@ void	ft_exit_line(int error, int linenb)
 		ft_putstr("😡 Error : Invalid number. line ");
 	else if (error == 6)
 		ft_putstr("😡 Error : Invalid number of line. line ");
+	else if (error == 7)
+		ft_putstr("😡 Error : Invalid border number. line ");
 	ft_putnbr(linenb);
 	ft_putchar('\n');
 	exit(-1);
@@ -87,10 +89,22 @@ void		ft_continue_error(t_map *map)
 void		ft_check_for_map_size(t_map *map)
 {
 	int	count;
+	int i;
 
+	i = 0;
 	count = 0;
 	while (get_next_line(map->fd, &(map->line)) > 0 && count < map->h)
 	{
+		if (count == 0)
+		{
+			map->splited = ft_strsplit(map->line, ' ');
+			while (map->splited[i])
+			{
+				if (ft_atoi(map->splited[i]) < 2 || ft_atoi(map->splited[i]) >= 20)
+					ft_exit_line(7, map->linenb + 1);
+				i++; 
+			}
+		}
 		check_x(map);
 		count++;
 		free(map->line);
