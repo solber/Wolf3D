@@ -160,6 +160,7 @@ int				expose_hook(void *param)
 			update_game(env);
 			//print_map(env->map);
 		}
+		// possibilite d'afficher les fps sur l'ecran
 		/*if (env->timer.timer >= CLOCKS_PER_SEC)
 		{
 			printf("FPS : %d\n", env->timer.ticks);
@@ -171,6 +172,7 @@ int				expose_hook(void *param)
 	return (0);
 }
 
+/*a revoir*/
 
 void			reset(t_env *env)
 {

@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 17:27:43 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/18 17:56:36 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		env->sprites_distance[i] = ((cam->pos_x - env->sprites[i].x) * (cam->pos_x - env->sprites[i].x) + 
 		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 		//gestion de la collision avec le perso
-		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del)
+		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del && 
+		(env->sprites[i].text_index == DICKMAN || env->sprites[i].text_index == DICKMAN_B)) // tres lourd, mettre une variable pour ca?
 			env->is_alive = 0;
 	}
 	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
