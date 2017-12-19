@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 14:38:24 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 15:43:26 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,22 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 	}
 }
 
+void		dying_animation(t_env *env, t_sprite *sprite)
+{
+	//printf("%d\n",env->sprites[i].timer_dead);
+	sprite->timer_dead--;
+	if (sprite->timer_dead % 2)
+		sprite->text_index = 0;
+	else
+		sprite->text_index = DICKMAN_D;
+	if (sprite->timer_dead == 0)
+	{
+		sprite->del = 1;
+		env->map.initial_map[(int)sprite->x + (int)sprite->y * env->map.w] = 0;
+	}
+	//printf("%d\n", sprite->text_index);
+}
+
 void		update_game(t_env *env)
 {
 	int i;
@@ -81,22 +97,7 @@ void		update_game(t_env *env)
 		move_sprite(&(env->map), &(env->sprites[i]));
 		//gestion de l'animation de mort des dickmans
 		if (env->sprites[i].timer_dead > 0)
-		{
-			//printf("%d\n",env->sprites[i].timer_dead);
-			env->sprites[i].timer_dead--;
-			if (env->sprites[i].timer_dead % 2)
-				env->sprites[i].text_index = 0;
-			else
-			{
-				//env->sprites[i].del = 0;
-				env->sprites[i].text_index = DICKMAN_D;
-			}
-			if (env->sprites[i].timer_dead == 0)
-			{
-				env->sprites[i].del = 1;
-				env->map.initial_map[(int)env->sprites[i].x + (int)env->sprites[i].y * env->map.w] = 0;
-			}
-		}
+			dying_animation(env, &(env->sprites[i]));
 	}
 	//printf("FPS : %d\n", env->timer.ticks * 10);
 	env->timer.ticks = 0;
