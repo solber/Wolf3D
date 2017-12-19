@@ -131,6 +131,8 @@ void			draw_all(t_env *env)
 	sprite_casting(env, &(env->cam));
 	draw_gun(env, env->textures[POMP]);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
+	if (!env->is_alive)
+		mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->textures[GAMEOVER].text_ptr, WIDTH / 2 - env->textures[GAMEOVER].w / 2, HEIGHT / 2 - env->textures[GAMEOVER].h / 2);
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, ft_itoa(env->map.coin)); // free !
 	env->timer.delta -= 1;
@@ -211,8 +213,8 @@ int				main(int argc, char **argv)
 		env = ft_use_env(1, argv[1]);
 		if (env != 0 && env->mlx_ptr != 0)
 		{
-			mlx_hook(env->win_ptr, 2, 1, key_hook_press, 0);
-			mlx_hook(env->win_ptr, 3, 2, key_hook_release, 0);
+			mlx_hook(env->win_ptr, KeyPress, KeyPressMask, key_hook_press, 0);
+			mlx_hook(env->win_ptr, KeyRelease, KeyReleaseMask, key_hook_release, 0);
 			mlx_hook(env->win_ptr, 17, 0, exit_hook, 0);
 			mlx_expose_hook(env->win_ptr, expose_hook, 0);
 			mlx_loop_hook(env->mlx_ptr, expose_hook, 0);

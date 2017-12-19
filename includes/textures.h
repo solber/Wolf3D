@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 19:44:12 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 15:16:37 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define DICKMAN_B 23
 # define DICKMAN_D 29
 # define BARREL 24
+# define GAMEOVER 29
 
 # define NB_TEXTURES 30
 

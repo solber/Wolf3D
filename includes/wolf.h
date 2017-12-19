@@ -9,7 +9,7 @@
 # include "textures.h"
 # include "sprites.h"
 # include "update.h"
-
+# include "/System/Library/Frameworks/Tk.framework/Versions/8.4/Headers/X11/X.h"
 /*debug*/
 
 # include <stdio.h>

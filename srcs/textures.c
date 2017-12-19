@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 19:43:19 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 15:16:58 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures
 	get_text(env, textures, "textures/dickman_d.xpm", DICKMAN_D);
 	get_text(env, textures, "textures/barrel.xpm", BARREL);
 	get_text(env, textures, "textures/pomp_idle.xpm", POMP);
+	get_text(env, textures, "textures/game_over.xpm", GAMEOVER);
 }
 
 /*
