@@ -156,7 +156,10 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		//gestion de la collision avec le perso
 		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del && 
 		env->sprites[i].type == DICKMAN && env->sprites[i].timer_dead == 0)
+		{
 			env->is_alive = 0;
+			system("afplay sounds/gameover.wav &");
+		}
 	}
 	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
 	//boucle sur chaque sprite pour le dessiner
