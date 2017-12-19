@@ -2,6 +2,30 @@
 #include <map.h>
 #include <wolf.h>
 
+#include <stdio.h>
+
+void 	check_y_zero(t_map *map)
+{
+	int i;
+
+	i = 0;
+	while (i < map->h)
+	{
+		if (map_get(map, 0, i) != 2)
+			ft_exit(7);
+		if (map_get(map, map->w - 1, i) != 2)
+			ft_exit(8);
+		i++;
+	}
+	i = 0;
+	while (i < map->w)
+	{
+		if (map_get(map, i, map->h - 1) != 2)
+			ft_exit(9);
+		i++;
+	}
+}
+
 void	check_x(t_map *map)
 {
 	int max;

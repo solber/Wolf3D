@@ -21,6 +21,12 @@ void 			ft_exit(int error)
 		ft_putendl("😡 Error : Can't close the file.");
 	else if (error == 6)
 		ft_putendl("😡 Error : Impossible to spawn player.");
+	else if (error == 7)
+		ft_putendl("😡 Error : Wrong map border on Y for x = 0.");
+	else if (error == 8)
+		ft_putendl("😡 Error : Wrong map border on Y for x = max.");
+	else if (error == 9)
+		ft_putendl("😡 Error : Wrong map border on X for y = max.");
 	exit(-1);
 }
 
@@ -40,6 +46,7 @@ void			map_init(t_map *map, char *filename)
 	if (!(map->reset_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
 		ft_exit(1);
 	ft_set_map(map);
+	check_y_zero(map);
 	ft_getspawn(map);
 	map->coin = 0;
 	// copy de la map pour save la position des sprites
