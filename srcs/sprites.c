@@ -158,7 +158,7 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		env->sprites[i].type == DICKMAN && env->sprites[i].timer_dead == 0)
 		{
 			env->is_alive = 0;
-			system("afkill killall");
+			system("killall afplay");
 			system("afplay sounds/gameover.wav &");
 		}
 	}
