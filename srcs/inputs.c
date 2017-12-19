@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inputs.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/19 16:32:31 by gmonnier          #+#    #+#             */
+/*   Updated: 2017/12/19 16:44:01 by gmonnier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf.h"
 
 /*
-** exit propre lorsque ESC appuye
+** exit propre lorsque ESC appuye // DEVRA AUSSI GERER LES FREES !
 */
 
 int				exit_hook(void *param)
@@ -14,25 +26,23 @@ int				exit_hook(void *param)
 
 /*
 ** ici on fait les deplacement en appelant une autre fonction pour le keyrepeat
-** ici faut juste prendre en compte qu'on ce deplace ou qu'on rotate de notre variable speedmv, ou speedrot
-** Pour strafer on fait une douille astral, c'est a dire qu'on fait regarder un court instant
-** vers la direction du straf, puis on avance, puis on regarde dans le sens inverse
-** ce qui donne l'impression plutot reussi de straf
+** ici faut juste prendre en compte qu'on ce deplace ou qu'on rotate de notre
+** variable SPEED_MOVE, ou SPEED_ROT
+** Pour strafer on fait une douille astral, c'est a dire qu'on fait regarder
+** un court instant vers la direction du straf, puis on avance, puis on regarde
+** dans le sens inverse ce qui donne l'impression plutot reussi de straf
 */
 
 void			input_action(t_env *env)
 {
-	double speedmv = 0.15;
-	double speedrot = 0.10;
-
 	if (env->inputs.left == 1)
-		cam_left(&(env->cam), speedrot);
+		cam_left(&(env->cam), SPEED_ROT);
 	if (env->inputs.right == 1)
-		cam_right(&(env->cam), speedrot);
+		cam_right(&(env->cam), SPEED_ROT);
 	if (env->inputs.up == 1)
-		cam_forward(&(env->cam), &(env->map), speedmv);
+		cam_forward(&(env->cam), &(env->map), SPEED_MOVE);
 	if (env->inputs.down == 1)
-		cam_backward(&(env->cam), &(env->map), speedmv);
+		cam_backward(&(env->cam), &(env->map), SPEED_MOVE);
 	if (env->inputs.sleft == 1)
 	{
 		cam_left(&(env->cam), 1.57);
@@ -62,6 +72,18 @@ static void		key_hook_press_cam(t_env *env, int keycode)
 		cam_init(&(env->cam), -1, 1);
 }
 
+static void		reset_escape(int keycode, t_env *env)
+{
+	if (keycode == 53)
+		exit_hook(env);
+	if (keycode == ENTER)
+	{
+		system("killall afplay");
+		system("afplay sounds/bg_music.mp3 &");
+		reset(env);
+	}
+}
+
 /*
 ** ici on gere juste le keypress en repeat
 */
@@ -72,15 +94,7 @@ int				key_hook_press(int keycode, void *param)
 
 	env = ft_use_env(-1, 0);
 	param = 0;
-	//printf("%d\n", keycode);
-	if (keycode == 53)
-		exit_hook(param);
-	if (keycode == ENTER)
-	{
-		system("killall afplay");
-		system("afplay sounds/bg_music.mp3 &");
-		reset(env);
-	}
+	reset_escape(keycode, env);
 	if (env && env->is_alive)
 	{
 		if (keycode == FORWARD)
@@ -134,4 +148,3 @@ int				key_hook_release(int keycode, void *param)
 	}
 	return (0);
 }
-

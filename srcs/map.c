@@ -1,6 +1,7 @@
 #include <map.h>
 #include <wolf.h>
 #include <error.h>
+
 /*
 ** ici on define une map et on remplis notre struct map avec cette derniere
 ** FF = bloc plein, 00 bloc vide, 02 un mur, 01 un bloc vide bloquant le joueur

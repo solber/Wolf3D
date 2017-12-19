@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/19 16:19:02 by gmonnier          #+#    #+#             */
+/*   Updated: 2017/12/19 16:19:24 by gmonnier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include <camera.h>
 #include <error.h>
 #include <wolf.h>
+
 /*
 ** init des vals de base de la cam
 ** xy en 2 pour pas poper dans un mur
@@ -36,18 +49,16 @@ void			cam_init(t_cam *cam, double fov, int onlyfov)
 
 void			cam_forward(t_cam *cam, t_map *map, double speed)
 {
-	int x_texture_hited;
-	int y_texture_hited;
-
+	int x_t_hited;
+	int y_t_hited;
 
 	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed);
 	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
-	x_texture_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
-	y_texture_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
-
-	if (check_collision(x_texture_hited, map))
+	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
+	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
+	if (check_collision(x_t_hited, map))
 		cam->pos_x += cam->dir_x * speed;
-	if (check_collision(y_texture_hited, map))
+	if (check_collision(y_t_hited, map))
 		cam->pos_y += cam->dir_y * speed;
 }
 
@@ -57,24 +68,16 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 
 void			cam_backward(t_cam *cam, t_map *map, double speed)
 {
-	int x_texture_hited;
-	int y_texture_hited;
+	int x_t_hited;
+	int y_t_hited;
 
-	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed); // eventual position if i walk X
-	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed); // Eventual position if i walk on Y
-	//if (get_collision(map_get(map, map->hited_obj_x, (int)cam->pos_y), // on avance si on a le droit
-	//map_get(map, (int)cam->pos_x, map->hited_obj_y), map))
-	//{
-//		cam->pos_x -= cam->dir_x * speed;
-	//	cam->pos_y -= cam->dir_y * speed;
-//	}
-	x_texture_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];//map_get(map, map->hited_obj_x, (int)cam->pos_y);
-	y_texture_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];//map_get(map, (int)cam->pos_x, map->hited_obj_y);
-	//x_texture_hited = map_get(map, map->hited_obj_x, (int)cam->pos_y);
-	//y_texture_hited = map_get(map, (int)cam->pos_x, map->hited_obj_y);
-	if (check_collision(x_texture_hited, map))
+	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed);
+	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed);
+	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
+	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
+	if (check_collision(x_t_hited, map))
 		cam->pos_x -= cam->dir_x * speed;
-	if (check_collision(y_texture_hited, map))
+	if (check_collision(y_t_hited, map))
 		cam->pos_y -= cam->dir_y * speed;
 }
 

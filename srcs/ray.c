@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/19 16:39:12 by gmonnier          #+#    #+#             */
+/*   Updated: 2017/12/19 16:45:11 by gmonnier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ray.h>
 #include <wolf.h>
 
 /*
-** On init le rayon en fonction de la position du joueur et de la dir dans laquelle il regarde
+** On init le rayon en fonction de la position du joueur et de la dir dans
+** laquelle il regarde
 */
 
 void			ray_init(t_ray *ray, t_cam *camera, double cur_pos)
@@ -47,6 +60,14 @@ void			ray_side_dist(t_ray *ray)
 	}
 }
 
+static void		sprite_hited(t_ray *ray, t_map *map, int kill_sprites)
+{
+	if (kill_sprites == 1 &&
+	(map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN ||
+	map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN_B))
+		ray->hit_sprite = 1;
+}
+
 /*
 ** ici c'est le DDA (voir tuto)
 */
@@ -62,22 +83,15 @@ void			ray_dda(t_ray *ray, t_map *map, int kill_sprites)
 		{
 			ray->side_x += ray->delta_x;
 			ray->map_x += ray->step_x;
-			ray->side = 0;
-			if (ray->step_x == 1)
-				ray->side = 1;
+			ray->side = ray->step_x == 1 ? 1 : 0;
 		}
 		else
 		{
 			ray->side_y += ray->delta_y;
 			ray->map_y += ray->step_y;
-			ray->side = 2;
-			if (ray->step_y == 1)
-				ray->side = 3;
+			ray->side = ray->step_y == 1 ? 3 : 2;
 		}
-		if (kill_sprites == 1 &&
-		(map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN ||
-		map->initial_map[ray->map_x + ray->map_y * map->w] == DICKMAN_B)) //definir autrement si on a plusieurs sprites qu'on peut toucher
-			ray->hit_sprite = 1;
+		sprite_hited(ray, map, kill_sprites);
 		if (map_get(map, ray->map_x, ray->map_y) > 0)
 			hit = 1;
 	}
@@ -99,10 +113,8 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 	line_height = (int)(height / ray->wall_dist);
 	start = -line_height / 2 + height / 2;
 	ray->end = line_height / 2 + height / 2;
-	if (start < 0)
-		start = 0;
-	if (ray->end >= height)
-		ray->end = height - 1;
+	start = start < 0 ? 0 : start;
+	ray->end = ray->end >= height ? height - 1 : height;
 	get_tex_x(ray);
 	while (start < ray->end)
 	{
