@@ -1,5 +1,6 @@
 #include <math.h>
 #include <camera.h>
+#include <error.h>
 #include <wolf.h>
 /*
 ** init des vals de base de la cam
@@ -8,10 +9,12 @@
 
 void			cam_init(t_cam *cam, double fov, int onlyfov)
 {
+	t_env *env;
+
+	env = ft_use_env(-1, 0);
 	if (onlyfov == 0)
 	{
-		//cam->pos_x = 2.5;
-		//cam->pos_y = 2.5;
+		ft_getspawn(&env->map);
 		cam->fov = 0;
 	}
 	cam->fov += fov;
