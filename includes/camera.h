@@ -2,6 +2,9 @@
 # define CAMERA_H
 # include "map.h"
 
+# define SPEED_ROT 0.10
+# define SPEED_MOVE 0.15
+
 typedef struct	s_cam
 {
 	double		pos_x; // position dans la map
