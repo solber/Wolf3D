@@ -205,7 +205,7 @@ int				main(int argc, char **argv)
 			mlx_hook(env->win_ptr, 17, 0, exit_hook, 0);
 			mlx_expose_hook(env->win_ptr, expose_hook, 0);
 			mlx_loop_hook(env->mlx_ptr, expose_hook, 0);
-			//system("afplay sounds/song.mp3 &");
+			system("afplay sounds/bg_music.mp3 &");
 			mlx_loop(env->mlx_ptr);
 		}
 	}

@@ -1,3 +1,4 @@
+make
 echo "\x1b[36mVerification map vide :\x1b[0m"
 ./wolf3d maps/invalid/invalid_empty.wolf3d
 echo "\n\x1b[36mVerification map size :\x1b[0m"
