@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 15:28:03 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 16:29:54 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,27 +200,4 @@ void		del_sprite(t_map *map, int pos)
 	}
 }
 
-/*
-** gestion du kill, une seule fois pour eviter d'overkill Dickman
-*/
 
-void		check_kills(t_env *env)
-{
-	if (env->inputs.can_fire)
-	{
-		system("afplay sounds/shotgun.wav &");
-		printf("check_kills\n");
-		env->ray.hit_sprite = 0;
-		ray_init(&(env->ray), &(env->cam), 0.5);
-		ray_side_dist(&(env->ray));
-		ray_dda(&(env->ray), &(env->map), 1);
-		if (env->ray.hit_sprite == 1)
-		{
-			system("afplay sounds/death.wav &");
-			printf("OMG you've killed Dickman\n");
-			env->ray.hit_sprite = 0;
-			del_sprite(&(env->map), env->ray.map_x + env->ray.map_y * env->map.w);
-		}
-		env->inputs.can_fire = 0;
-	}
-}
