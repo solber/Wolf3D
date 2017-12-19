@@ -27,6 +27,7 @@
 # define FOVDOWN 78
 
 # define FIRE 49
+# define ENTER 36
 #endif
 
 typedef struct	s_inputs

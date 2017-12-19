@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 19:22:40 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 09:19:31 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void		check_kills(t_env *env)
 {
 	if (env->inputs.can_fire)
 	{
+		system("afplay sounds/shotgun.wav &");
 		printf("check_kills\n");
 		env->ray.hit_sprite = 0;
 		ray_init(&(env->ray), &(env->cam), 0.5);
@@ -203,6 +204,7 @@ void		check_kills(t_env *env)
 		ray_dda(&(env->ray), &(env->map), 1);
 		if (env->ray.hit_sprite == 1)
 		{
+			system("afplay sounds/death.wav &");
 			printf("OMG you've killed Dickman\n");
 			env->ray.hit_sprite = 0;
 			del_sprite(&(env->map), env->ray.map_x + env->ray.map_y * env->map.w);
