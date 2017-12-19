@@ -76,7 +76,11 @@ int				key_hook_press(int keycode, void *param)
 	if (keycode == 53)
 		exit_hook(param);
 	if (keycode == ENTER)
+	{
+		system("killall afplay");
+		system("afplay sounds/bg_music.mp3 &");
 		reset(env);
+	}
 	if (env && env->is_alive)
 	{
 		if (keycode == FORWARD)
