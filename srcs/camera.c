@@ -10,8 +10,8 @@ void			cam_init(t_cam *cam, double fov, int onlyfov)
 {
 	if (onlyfov == 0)
 	{
-		cam->pos_x = 3;
-		cam->pos_y = 3;
+		cam->pos_x = 2.5;
+		cam->pos_y = 2.5;
 		cam->fov = 0;
 	}
 	cam->fov += fov;

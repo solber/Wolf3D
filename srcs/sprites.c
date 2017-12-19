@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 14:00:17 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 14:19:17 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void		init_sprites(t_sprite **sprites, int nb)
 			(*sprites)[index].text_index = env->map.data[i];
 			(*sprites)[index].dir_x = -SPRITE_SPEED;
 			(*sprites)[index].type = env->map.data[i];
+			if (env->map.data[i] == DICKMAN_B)
+				(*sprites)[index].type = DICKMAN;
 			(*sprites)[index].timer_dead = 0;
 			//printf("%.2f, %.2f\n", (*sprites)[index].x, (*sprites)[index].y);
 			//printf("%d\n", (*sprites)[index].text_index);
@@ -185,8 +187,11 @@ void		del_sprite(t_map *map, int pos)
 			if (env->sprites[i].type == DICKMAN)
 				env->sprites[i].timer_dead = 10;
 			else
+			{
+				//printf("%d\n", env->sprites[i].type);
 				env->sprites[i].del = 1;
-			map->initial_map[pos] = 0;
+			}
+				map->initial_map[pos] = 0;
 		}
 	}
 }

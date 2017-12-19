@@ -35,10 +35,13 @@ void			map_init(t_map *map, char *filename)
 		ft_exit(1);
 	if (!(map->initial_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
 		ft_exit(1);
+	if (!(map->reset_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
+		ft_exit(1);
 	ft_set_map(map);
 	map->coin = 0;
 	// copy de la map pour save la position des sprites
 	map->initial_map = (int*)ft_memcpy(map->initial_map, map->data, (map->w * map->h) * sizeof(int));
+	map->reset_map = (int*)ft_memcpy(map->reset_map, map->data, (map->w * map->h) * sizeof(int));
 }
 
 /*
@@ -57,7 +60,7 @@ int				map_get(t_map *map, int x, int y)
 			return (map->data[pos]);
 		}
 	}
-	return (0xffffff); //return -1 pour erreur plutot?
+	return (0);
 }
 
 /*

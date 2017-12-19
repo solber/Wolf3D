@@ -16,6 +16,7 @@ typedef struct	s_map
 	int 		coin;
 	int			*data;
 	int			*initial_map;
+	int			*reset_map;
 }				t_map;
 
 void			map_init(t_map *map, char *filename);

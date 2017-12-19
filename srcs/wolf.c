@@ -178,8 +178,12 @@ void			reset(t_env *env)
 {
 	env->is_alive = 1;
 	printf("reset\n");
-	//map_init(&(env->map), filename);
-	//init_sprites(&(env->sprites), env->nb_sprite);
+	env->map.initial_map = (int*)ft_memcpy(env->map.initial_map, env->map.reset_map, (env->map.w * env->map.h) * sizeof(int));
+	env->map.data = (int*)ft_memcpy(env->map.data, env->map.reset_map, (env->map.w * env->map.h) * sizeof(int));
+	free(env->sprites);
+	free(env->sprites_order);
+	free(env->sprites_distance);
+	init_sprites(&(env->sprites), env->nb_sprite);
 	cam_init(&(env->cam), 66, 0);
 	env->inputs.left = 0;
 	env->inputs.right = 0;
