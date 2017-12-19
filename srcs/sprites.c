@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 09:19:31 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/19 14:00:17 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void		sprite_casting(t_env *env, t_cam *cam)
 		(cam->pos_y - env->sprites[i].y) * (cam->pos_y - env->sprites[i].y));
 		//gestion de la collision avec le perso
 		if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del && 
-		env->sprites[i].type == DICKMAN)
+		env->sprites[i].type == DICKMAN && env->sprites[i].timer_dead == 0)
 			env->is_alive = 0;
 	}
 	sort_sprites(env->sprites_order, env->sprites_distance, env->nb_sprite);
@@ -162,7 +162,7 @@ void		sprite_casting(t_env *env, t_cam *cam)
 	while (++i < env->nb_sprite)
 	{
 		// pour quand on effacera des sprites, on verif que y'en a bien un a dessiner
-		if (env->sprites[env->sprites_order[i]].del == 0)
+		if (env->sprites[env->sprites_order[i]].del == 0 && env->sprites[env->sprites_order[i]].text_index != 0)
 		{
 			sprite_calc(cam, &(env->sprites[env->sprites_order[i]]));
 			sprite_draw(env, &(env->sprites[env->sprites_order[i]]));
@@ -182,7 +182,10 @@ void		del_sprite(t_map *map, int pos)
 		if ((int)env->sprites[i].y * map->w + (int)env->sprites[i].x == pos)
 		{
 			//env->sprites[i].del = 1;
-			env->sprites[i].timer_dead = 10;
+			if (env->sprites[i].type == DICKMAN)
+				env->sprites[i].timer_dead = 10;
+			else
+				env->sprites[i].del = 1;
 			map->initial_map[pos] = 0;
 		}
 	}

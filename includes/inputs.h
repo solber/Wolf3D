@@ -38,7 +38,6 @@ typedef struct	s_inputs
 	int			down;
 	int			sleft;
 	int			sright;
-	//int			wall; //useless now
 	int			fire;
 	int			can_fire;
 }				t_inputs;

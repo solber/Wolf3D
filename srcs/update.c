@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 19:44:43 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/19 13:54:12 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,15 @@ void		update_game(t_env *env)
 	while (++i < env->nb_sprite)
 	{
 		move_sprite(&(env->map), &(env->sprites[i]));
+		//gestion de l'animation de mort des dickmans
 		if (env->sprites[i].timer_dead > 0)
 		{
 			env->sprites[i].timer_dead--;
 			if (env->sprites[i].timer_dead % 2)
-				env->sprites[i].del = 1;
+				env->sprites[i].text_index = 0;
 			else
 			{
-				env->sprites[i].del = 0;
+				//env->sprites[i].del = 0;
 				env->sprites[i].text_index = DICKMAN_D;
 			}
 			if (env->sprites[i].timer_dead == 0)

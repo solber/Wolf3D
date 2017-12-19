@@ -155,7 +155,7 @@ int				expose_hook(void *param)
 		if (env->timer.delta >= 1)
 			draw_all(env);
 		//updategame every 1/10 seconde
-		if (env->timer.timer >= CLOCKS_PER_SEC / 5)
+		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
 		{
 			update_game(env);
 			//print_map(env->map);
@@ -181,7 +181,14 @@ void			reset(t_env *env)
 	//map_init(&(env->map), filename);
 	//init_sprites(&(env->sprites), env->nb_sprite);
 	cam_init(&(env->cam), 66, 0);
+	env->inputs.left = 0;
+	env->inputs.right = 0;
+	env->inputs.up = 0;
+	env->inputs.down = 0;
+	env->inputs.sleft = 0;
+	env->inputs.sright = 0;
 	env->inputs.can_fire = 1;
+	env->map.coin = 0;
 	timer_init(&(env->timer));
 	env->is_alive = 1;
 }
