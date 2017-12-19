@@ -10,6 +10,7 @@ void	ft_check_for_error(t_map *map);
 void	ft_continue_error(t_map *map);
 void	ft_check_for_map_size(t_map *map);
 void 	ft_exit_line(int error, int linenb);
+void	ft_getspawn(t_map *map);
 
 void	check_x(t_map *map);
 

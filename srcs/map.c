@@ -19,6 +19,8 @@ void 			ft_exit(int error)
 		ft_putendl("😡 Error : Can't open folder AND/OR empty files.");
 	else if (error == 5)
 		ft_putendl("😡 Error : Can't close the file.");
+	else if (error == 6)
+		ft_putendl("😡 Error : Impossible to spawn player.");
 	exit(-1);
 }
 
@@ -38,6 +40,7 @@ void			map_init(t_map *map, char *filename)
 	if (!(map->reset_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
 		ft_exit(1);
 	ft_set_map(map);
+	ft_getspawn(map);
 	map->coin = 0;
 	// copy de la map pour save la position des sprites
 	map->initial_map = (int*)ft_memcpy(map->initial_map, map->data, (map->w * map->h) * sizeof(int));

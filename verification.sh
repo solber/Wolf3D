@@ -1,4 +1,8 @@
 make
+echo "\n\x1b[36mVerification open folder :\x1b[0m"
+./wolf3d maps/
+echo "\n\x1b[36mVerification open random file :\x1b[0m"
+./wolf3d sounds/shotgun.wav
 echo "\x1b[36mVerification map vide :\x1b[0m"
 ./wolf3d maps/invalid/invalid_empty.wolf3d
 echo "\n\x1b[36mVerification map size :\x1b[0m"
@@ -17,3 +21,5 @@ echo "\n\x1b[36mVerification charactere on map :\x1b[0m"
 ./wolf3d maps/invalid/invalid_character.wolf3d
 echo "\n\x1b[36mVerification number of line on map :\x1b[0m"
 ./wolf3d maps/invalid/invalid_height.wolf3d
+echo "\n\x1b[36mVerification if it can spawn player :\x1b[0m"
+./wolf3d maps/invalid/invalid_spawn_player.wolf3d
