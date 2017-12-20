@@ -4,6 +4,8 @@
 # include <libft.h>
 # include <wolf.h>
 
+# define MAPS map->splited
+
 //void	ft_check_for_letters(t_map *map);
 void 	checkforletter(t_map *map);
 void	ft_check_for_error(t_map *map);

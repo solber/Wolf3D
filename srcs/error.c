@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 10:17:05 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <error.h>
 
 void	ft_exit_line(int error, int linenb)
@@ -6,7 +18,7 @@ void	ft_exit_line(int error, int linenb)
 	if (error == 1)
 		ft_putstr("😡 Error : No maps data. line ");
 	else if (error == 2)
-		ft_putstr("😡 Error : Invalid MAP_SIZE or NB_SPRITES in map file. line ");
+		ft_putstr("😡 Error : Invalid MAP_SIZE / NB_SPRITES in map file. line ");
 	else if (error == 3)
 		ft_putstr("😡 Error : Invalid GND or SKY texture value. line ");
 	else if (error == 4)
@@ -22,7 +34,7 @@ void	ft_exit_line(int error, int linenb)
 	exit(-1);
 }
 
-void checkforletter(t_map *map)
+void	checkforletter(t_map *map)
 {
 	int i;
 	int j;
@@ -43,7 +55,7 @@ void checkforletter(t_map *map)
 	}
 }
 
-void		ft_check_for_error(t_map *map)
+void	ft_check_for_error(t_map *map)
 {
 	int count;
 
@@ -67,7 +79,7 @@ void		ft_check_for_error(t_map *map)
 	ft_continue_error(map);
 }
 
-void		ft_continue_error(t_map *map)
+void	ft_continue_error(t_map *map)
 {
 	if ((get_next_line(map->fd, &(map->line))) <= 0)
 		ft_exit_line(1, map->linenb);
@@ -86,7 +98,7 @@ void		ft_continue_error(t_map *map)
 	ft_check_for_map_size(map);
 }
 
-void		ft_check_for_map_size(t_map *map)
+void	ft_check_for_map_size(t_map *map)
 {
 	int	count;
 	int i;
@@ -100,9 +112,9 @@ void		ft_check_for_map_size(t_map *map)
 			map->splited = ft_strsplit(map->line, ' ');
 			while (map->splited[i])
 			{
-				if (ft_atoi(map->splited[i]) < 2 || ft_atoi(map->splited[i]) >= 20)
+				if (ft_atoi(MAPS[i]) < 2 || ft_atoi(map->splited[i]) >= 20)
 					ft_exit_line(7, map->linenb + 1);
-				i++; 
+				i++;
 			}
 		}
 		check_x(map);
