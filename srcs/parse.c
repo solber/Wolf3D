@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/18 16:04:55 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 11:08:47 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <map.h>
 #include <wolf.h>
 
-void ft_open(t_map *map, char *filename)
+void			ft_open(t_map *map, char *filename)
 {
 	if (!(map->fd = open(filename, O_RDONLY)))
 		ft_exit(2);
 }
 
-static void ft_get_nb_sprites(char *nb)
+static void		ft_get_nb_sprites(char *nb)
 {
 	t_env *env;
 
@@ -15,11 +27,11 @@ static void ft_get_nb_sprites(char *nb)
 	env->nb_sprite = ft_atoi(nb);
 }
 
-void ft_get_size(t_map *map)
+void			ft_get_size(t_map *map)
 {
-	char 	**splited;
+	char	**splited;
 	char	*line;
-	int 	count;
+	int		count;
 
 	count = 0;
 	while (get_next_line(map->fd, &line))
@@ -32,7 +44,7 @@ void ft_get_size(t_map *map)
 			ft_get_nb_sprites(splited[2]);
 			free(splited);
 			free(line);
-			break;
+			break ;
 		}
 		if (line)
 			free(line);
@@ -40,7 +52,7 @@ void ft_get_size(t_map *map)
 	}
 }
 
-void ft_get_tex(t_map *map)
+void			ft_get_tex(t_map *map)
 {
 	t_env	*env;
 	char	**splited;
@@ -57,19 +69,19 @@ void ft_get_tex(t_map *map)
 			env->floor = ft_atoi(splited[0]);
 			env->roof = ft_atoi(splited[1]);
 			free(splited);
-		}		
+		}
 		free(line);
 		count++;
 	}
 }
 
-void ft_set_map(t_map *map)
+void			ft_set_map(t_map *map)
 {
-	char 	**splited;
-	char 	*line;
-	int 	count;
-	int 	i;
-	int 	j;
+	char	**splited;
+	char	*line;
+	int		count;
+	int		i;
+	int		j;
 
 	count = 0;
 	i = 0;
