@@ -1,5 +1,5 @@
-norminette srcs/
-norminette includes/
+norminette srcs/*.c
+norminette includes/*.h
 make
 clear
 echo "\n\x1b[36mVerification open folder :\x1b[0m"
