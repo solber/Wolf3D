@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 10:22:10 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:03:44 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	check_x(t_map *map)
 	map->linenb++;
 	map->splited = ft_strsplit(map->line, ' ');
 	checkforletter(map);
-	ft_putendl(map->line);
 	while (map->splited[i])
 	{
 		if (ft_atoi(map->splited[i]) < 0)
