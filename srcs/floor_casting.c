@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 10:28:08 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 17:43:55 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 14:14:53 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		floor_casting(t_env *env, t_ray *ray, int pos)
 	get_floor_coord(ray);
 	if (ray->end < 0)
 		ray->end = env->height;
-	y = ray->end;
+	y = ray->end - 1;
 	while (++y < env->height)
 	{
 		get_text_coord(env, ray, y);
