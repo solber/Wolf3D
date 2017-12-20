@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 10:17:05 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:07:31 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_check_for_error(t_map *map)
 	while (get_next_line(map->fd, &(map->line)) && count < 1)
 	{
 		map->linenb++;
-		ft_putendl(map->line);
 		map->splited = ft_strsplit(map->line, ' ');
 		checkforletter(map);
 		map->w = ft_atoi(map->splited[0]);
@@ -84,7 +83,6 @@ void	ft_continue_error(t_map *map)
 	if ((get_next_line(map->fd, &(map->line))) <= 0)
 		ft_exit_line(1, map->linenb);
 	map->linenb += 2;
-	ft_putendl(map->line);
 	map->splited = ft_strsplit(map->line, ' ');
 	checkforletter(map);
 	if (ft_atoi(map->splited[0]) <= 0 || ft_atoi(map->splited[1]) <= 0)
