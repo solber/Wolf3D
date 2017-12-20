@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 15:43:26 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:14:51 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		get_next_time(t_timer *timer)
 }
 
 /*
-** recupere la texture du dickman en fonction de la position du joueur en y et du sens de marche
+** recupere la texture du dickman en fonction de la position
+** du joueur en y et du sens de marche
 */
 
 void		get_dickman_text(t_sprite *sprite)
@@ -47,25 +48,25 @@ void		get_dickman_text(t_sprite *sprite)
 
 void		move_sprite(t_map *map, t_sprite *sprite)
 {
-	int save_x;
-	double avoid_wall;
+	int		save_x;
+	double	avoid_wall;
 
 	if (sprite->type == DICKMAN && sprite->del == 0 && sprite->timer_dead == 0)
 	{
 		save_x = (int)sprite->x;
 		avoid_wall = sprite->dir_x > 0 ? 0.5 : -0.5;
-		//update map
-		if (map_get(map, (int)(sprite->x + sprite->dir_x + avoid_wall), (int)sprite->y) > 0) // si le sprite rentre dans un mur
+		if (map_get(map, (int)(sprite->x + sprite->dir_x +
+			avoid_wall), (int)sprite->y) > 0)
 		{
-			sprite->dir_x = -sprite->dir_x; // on change de sens
+			sprite->dir_x = -sprite->dir_x;
 			get_dickman_text(sprite);
 		}
 		if ((sprite->x + sprite->dir_x) - save_x >= 1 ||
-		(sprite->x + sprite->dir_x) - save_x <= 0) // si on change de case
+		(sprite->x + sprite->dir_x) - save_x <= 0)
 		{
-			// on met a jour la map
 			map->initial_map[(int)sprite->y * map->w + save_x] = 0;
-			map->initial_map[(int)sprite->y * map->w + (int)(sprite->x + sprite->dir_x)] = sprite->text_index;
+			map->initial_map[(int)sprite->y * map->w + (int)(sprite->x +
+				sprite->dir_x)] = sprite->text_index;
 		}
 		sprite->x += sprite->dir_x;
 	}
@@ -73,7 +74,6 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 
 void		dying_animation(t_env *env, t_sprite *sprite)
 {
-	//printf("%d\n",env->sprites[i].timer_dead);
 	sprite->timer_dead--;
 	if (sprite->timer_dead % 2)
 		sprite->text_index = 0;
@@ -84,23 +84,4 @@ void		dying_animation(t_env *env, t_sprite *sprite)
 		sprite->del = 1;
 		env->map.initial_map[(int)sprite->x + (int)sprite->y * env->map.w] = 0;
 	}
-	//printf("%d\n", sprite->text_index);
-}
-
-void		update_game(t_env *env)
-{
-	int i;
-
-	i = -1;
-	while (++i < env->nb_sprite)
-	{
-		move_sprite(&(env->map), &(env->sprites[i]));
-		//gestion de l'animation de mort des dickmans
-		if (env->sprites[i].timer_dead > 0)
-			dying_animation(env, &(env->sprites[i]));
-	}
-	//printf("FPS : %d\n", env->timer.ticks * 10);
-	env->timer.ticks = 0;
-	env->timer.timer = 0;
-	//print_map(env->map);
 }
