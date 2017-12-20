@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_format.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 10:22:10 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <error.h>
 #include <map.h>
 #include <wolf.h>
 
-#include <stdio.h>
-
-void 	check_y_zero(t_map *map)
+void	check_y_zero(t_map *map)
 {
 	int i;
 
@@ -50,29 +60,28 @@ void	check_x(t_map *map)
 
 void	ft_getspawn(t_map *map)
 {
-	int i;// h
-	int j;// w
-	int spawned = 0;
-	t_env *env;
+	int		i;
+	int		j;
+	int		spawned;
+	t_env	*env;
 
+	spawned = 0;
 	env = ft_use_env(-1, 0);
-	i = 0;
-	j = 0;
-	while (j < map->w && !spawned)
+	i = -1;
+	j = -1;
+	while (++j < map->w && !spawned)
 	{
-		i = 0;
-		while (i < map->h)
+		i = -1;
+		while (++i < map->h)
 		{
 			if (j > 0 && map_get(map, j, i) == 0)
 			{
 				env->cam.pos_x = j + 0.5;
 				env->cam.pos_y = i + 0.5;
 				spawned = 1;
-				break;
+				break ;
 			}
-			i++;
 		}
-		j++;
 	}
 	if (!spawned)
 		ft_exit(6);
