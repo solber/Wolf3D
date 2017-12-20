@@ -9,6 +9,7 @@ SRC= srcs/inputs.c \
 	srcs/floor_casting.c \
 	srcs/collision.c \
 	srcs/sprites.c \
+	srcs/sprites_utils.c \
 	srcs/update.c \
 	srcs/error.c \
 	srcs/line_format.c \
