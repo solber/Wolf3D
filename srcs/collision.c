@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:56 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:49:00 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 11:19:21 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,20 @@ void		check_kills(t_env *env)
 			env->ray.map_x + env->ray.map_y * env->map.w);
 		}
 		env->inputs.can_fire = 0;
+	}
+}
+
+/*
+** gestion des collisions joueur-sprite, en fonction de leur distance
+*/
+
+void		collide_player_sprite(t_env *env, int i)
+{
+	if (env->sprites_distance[i] <= HIT_BOX && !env->sprites[i].del &&
+	env->sprites[i].type == DICKMAN && env->sprites[i].timer_dead == 0)
+	{
+		env->is_alive = 0;
+		system("killall afplay");
+		system("afplay sounds/gameover.wav &");
 	}
 }

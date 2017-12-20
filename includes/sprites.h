@@ -6,7 +6,7 @@
 /*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/18 19:12:28 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 10:59:50 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ typedef struct		s_sprite
 }					t_sprite;
 void		init_sprites(t_sprite **sprites, int nb);
 void		del_sprite(t_map *map, int pos);
+void		sort_sprites(int *order, double *dist, int nb);
 #endif

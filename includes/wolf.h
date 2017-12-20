@@ -87,6 +87,7 @@ void			sprite_casting(t_env *env, t_cam *cam);
 void			init_sprites(t_sprite **sprites, int nb);
 void			check_kills(t_env *env);
 void			del_sprite(t_map *map, int pos);
+void			collide_player_sprite(t_env *env, int i);
 
 /*
 ** update
