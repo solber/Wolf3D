@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 12:36:10 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 12:42:29 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 14:08:38 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void			ft_get_tex(t_map *map)
 		free(line);
 		count++;
 	}
+	if (line)
+		free(line);
 }
 
 void			ft_set_map(t_map *map)
