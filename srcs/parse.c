@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:04:55 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:08:47 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:35:14 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			ft_get_size(t_map *map)
 			map->w = ft_atoi(splited[0]);
 			map->h = ft_atoi(splited[1]);
 			ft_get_nb_sprites(splited[2]);
-			free(splited);
+			free_splited(splited);
 			free(line);
 			break ;
 		}
@@ -68,7 +68,7 @@ void			ft_get_tex(t_map *map)
 			splited = ft_strsplit(line, ' ');
 			env->floor = ft_atoi(splited[0]);
 			env->roof = ft_atoi(splited[1]);
-			free(splited);
+			free_splited(splited);
 		}
 		free(line);
 		count++;
@@ -96,7 +96,7 @@ void			ft_set_map(t_map *map)
 			j++;
 		}
 		j = 0;
-		free(splited);
+		free_splited(splited);
 		if (line)
 			free(line);
 		count++;

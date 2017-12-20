@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 12:21:00 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:33:54 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	free_splited(char **splited)
 	int i;
 
 	i = 0;
+	if (!splited)
+		return ;
 	while (splited[i])
 	{
 		free(splited[i]);
