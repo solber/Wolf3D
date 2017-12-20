@@ -29,7 +29,7 @@ typedef struct	s_env
 	int			bpp;
 	int			sl;
 	int			edn;
-	void		*img; // void* mec, pourquoi int?
+	void		*img;
 	char		*tmp;
 	int 		roof;
 	int 		floor;
@@ -39,9 +39,9 @@ typedef struct	s_env
 	t_map		map;
 	t_text		textures[NB_TEXTURES];
 	t_timer		timer;
-	int			nb_sprite; //recup dans map
-	t_sprite	*sprites; // tableau qui contient les sprites (malloc)
-	double		z_buffer[WIDTH]; //buffer qui sauvegarde la distance a chaque mur => si un sprite est derriere, on le draw pas
+	int			nb_sprite;
+	t_sprite	*sprites;
+	double		z_buffer[WIDTH];
 	int			*sprites_order;
 	double		*sprites_distance;
 	int			is_alive;
@@ -63,6 +63,7 @@ void	get_tex_x(t_ray *ray);
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);
+void	destroy_text(t_env *env, t_text *textures);
 
 /*
 ** floor_casting
