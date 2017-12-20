@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 12:07:31 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:23:06 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_check_for_error(t_map *map)
 		checkforletter(map);
 		map->w = ft_atoi(map->splited[0]);
 		map->h = ft_atoi(map->splited[1]);
-		free(map->splited);
+		free_splited(map->splited);
 		free(map->line);
 		count++;
 	}

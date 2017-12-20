@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:29:35 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:21:00 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,17 @@ void	destroy_text(t_env *env, t_text *textures)
 	mlx_destroy_image(env->mlx_ptr, textures[BARREL].text_ptr);
 	mlx_destroy_image(env->mlx_ptr, textures[POMP].text_ptr);
 	mlx_destroy_image(env->mlx_ptr, textures[GAMEOVER].text_ptr);
+}
+
+void	free_splited(char **splited)
+{
+	int i;
+
+	i = 0;
+	while (splited[i])
+	{
+		free(splited[i]);
+		i++;
+	}
+	free(splited);
 }

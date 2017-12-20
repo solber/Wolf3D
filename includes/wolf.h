@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:38:41 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:39:03 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:21:35 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ void			timer_init(t_timer *timer);
 void			get_next_time(t_timer *timer);
 
 void			reset(t_env *env);
+void			free_splited(char **splited);
 
 #endif

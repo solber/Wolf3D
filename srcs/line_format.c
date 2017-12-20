@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 12:03:44 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:25:03 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	check_x(t_map *map)
 	}
 	if (max != map->w)
 		ft_exit_line(4, map->linenb);
+	free_splited(map->splited);
 }
 
 void	ft_getspawn(t_map *map)
