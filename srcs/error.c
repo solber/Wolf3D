@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 13:36:42 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 13:57:00 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,17 @@ void	ft_check_for_map_size(t_map *map)
 	int	count;
 	int i;
 
-	i = 0;
+	i = -1;
 	count = 0;
 	while (get_next_line(map->fd, &(map->line)) > 0 && count < map->h)
 	{
 		if (count == 0)
 		{
 			map->splited = ft_strsplit(map->line, ' ');
-			while (map->splited[i])
+			while (map->splited[++i])
 			{
 				if (ft_atoi(MAPS[i]) < 2 || ft_atoi(map->splited[i]) >= 20)
 					ft_exit_line(7, map->linenb + 1);
-				i++;
 			}
 			free_splited(map->splited);
 		}
