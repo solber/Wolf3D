@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:28:03 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 10:50:39 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 10:57:01 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,18 @@ void			draw_all(t_env *env)
 			WIDTH / 2 - ENVTEX[GAMEOVER].w /
 			2, HEIGHT / 2 - ENVTEX[GAMEOVER].h / 2);
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
-	mlx_string_put(env->mlx_ptr, env->win_ptr, 100, 10, 0xFFFFFF, env->map.coinc);
+	mlx_string_put(MLX, WIN, 100, 10, 0xFFFFFF, env->map.coinc);
 	free(env->map.coinc);
 	env->timer.delta -= 1;
 	env->timer.ticks++;
 }
 
 /*
-** on fou le pixel de couleur au bon endroit (decallage binaire pour recup le g et r)
+** on fou le pixel de couleur au bon endroit
+** (decallage binaire pour recup le g et r)
 */
 
-void			img_put_px(t_env *env, unsigned long color, int x, int y) //why unsigned long ?? => int
+void			img_put_px(t_env *env, int color, int x, int y)
 {
 	env->tmp[y * env->sl + x * env->bpp / 8] = (color & 0xFF);
 	env->tmp[y * env->sl + x * env->bpp / 8 + 1] = (color & 0xFF00) >> 8;
@@ -74,7 +75,6 @@ void			img_put_px(t_env *env, unsigned long color, int x, int y) //why unsigned 
 
 /*
 ** ici on draw une colonne a la fois , avec gestion ciel et sol
-** 
 */
 
 void			vertical_draw(t_env *env, int x)
