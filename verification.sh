@@ -1,4 +1,5 @@
-clear
+norminette srcs/
+norminette includes/
 make
 clear
 echo "\n\x1b[36mVerification open folder :\x1b[0m"

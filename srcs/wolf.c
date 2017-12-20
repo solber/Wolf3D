@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:34:15 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:34:16 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:40:58 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int				expose_hook(void *param)
 void			reset(t_env *env)
 {
 	env->is_alive = 1;
-	printf("reset\n");
 	env->map.initial_map = (int*)ft_memcpy(env->map.initial_map,
 	env->map.reset_map, (env->map.w * env->map.h) * sizeof(int));
 	env->map.data = (int*)ft_memcpy(env->map.data, env->map.reset_map,
