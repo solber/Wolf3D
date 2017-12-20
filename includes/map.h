@@ -14,6 +14,7 @@ typedef struct	s_map
 	int 		hited_obj_x;
 	int 		hited_obj_y;
 	int 		coin;
+	char		*coinc;
 	int			*data;
 	int			*initial_map;
 	int			*reset_map;

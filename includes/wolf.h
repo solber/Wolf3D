@@ -16,6 +16,9 @@
 
 /*debug*/
 
+# define ENVTEX env->textures
+# define MLX env->mlx_ptr
+# define WIN env->win_ptr
 # define WIDTH 640
 # define HEIGHT 480
 # define FPS 60
@@ -56,37 +59,50 @@ void			ft_exit(int error);
 
 
 /*
+** Functions de draw
+*/
+
+void			draw_all(t_env *env);
+void			vertical_draw(t_env *env, int x);
+/*
 ** fonctions de textures
 */
 
+<<<<<<< HEAD
 void	get_tex_x(t_ray *ray);
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);
 void	destroy_text(t_env *env, t_text *textures);
+=======
+void			get_tex_x(t_ray *ray);
+void			get_tex_y(t_ray *ray, int y, int height, int line_height);
+void			load_text(t_env *env, t_text *textures);
+int				get_pixel_from_texture(t_env *env, t_ray *ray);
+>>>>>>> 92080cd99a604e2702a0864f11f8971f8ec92eb9
 
 /*
 ** floor_casting
 */
 
-void		floor_casting(t_env *env, t_ray *ray, int pos);
+void			floor_casting(t_env *env, t_ray *ray, int pos);
 
 /*
 ** sprites
 */
 
-void		sprite_casting(t_env *env, t_cam *cam);
-void		init_sprites(t_sprite **sprites, int nb);
-void		check_kills(t_env *env);
-void		del_sprite(t_map *map, int pos);
+void			sprite_casting(t_env *env, t_cam *cam);
+void			init_sprites(t_sprite **sprites, int nb);
+void			check_kills(t_env *env);
+void			del_sprite(t_map *map, int pos);
 
 /*
 ** update
 */
 
-void		update_game(t_env *env);
-void		timer_init(t_timer *timer);
-void		get_next_time(t_timer *timer);
+void			update_game(t_env *env);
+void			timer_init(t_timer *timer);
+void			get_next_time(t_timer *timer);
 
 void		reset(t_env *env);
 #endif
