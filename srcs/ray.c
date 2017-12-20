@@ -6,7 +6,7 @@
 /*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 17:44:25 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:43:33 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 12:01:28 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 	else
 		ray->wall_dist = (ray->map_y - ray->pos_y + (1 - ray->step_y) / 2)
 		/ ray->dir_y;
-	color = map_color(ray->side);
 	line_height = (int)(height / ray->wall_dist);
 	start = -line_height / 2 + height / 2;
 	ray->end = line_height / 2 + height / 2;
