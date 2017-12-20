@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:47:22 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:40:25 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 12:00:18 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,4 @@ int			map_get(t_map *map, int x, int y)
 		}
 	}
 	return (0);
-}
-
-/*
-** Useless now
-** on renvoi la couleur en fonction de l'orientation
-*/
-
-int			map_color(int side)
-{
-	if (side == 1)
-		return (0xFF0000);
-	if (side == 2)
-		return (0x002FFF);
-	if (side == 3)
-		return (0x0DFF00);
-	return (0xFFEE00);
 }
