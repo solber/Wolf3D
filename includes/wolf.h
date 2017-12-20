@@ -60,7 +60,7 @@ void			ft_exit(int error);
 void			update_game(t_env *env);
 void			move_sprite(t_map *map, t_sprite *sprite);
 void			dying_animation(t_env *env, t_sprite *sprite);
-
+void			destroy_text(t_env *env, t_text *textures);
 /*
 ** Functions de draw
 */

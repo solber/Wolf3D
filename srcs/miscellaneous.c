@@ -6,15 +6,16 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:26:23 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 11:29:35 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 #include "update.h"
 #include <inputs.h>
+#include <textures.h>
 
-void		update_game(t_env *env)
+void	update_game(t_env *env)
 {
 	int i;
 
@@ -33,7 +34,7 @@ void		update_game(t_env *env)
 ** exit propre lorsque ESC appuye // DEVRA AUSSI GERER LES FREES !
 */
 
-int				exit_hook(void *param)
+int		exit_hook(void *param)
 {
 	t_env *env;
 
@@ -54,4 +55,26 @@ int				exit_hook(void *param)
 	ft_use_env(0, 0);
 	system("killall afplay");
 	exit(EXIT_SUCCESS);
+}
+
+/*
+** detruit toutes les textures a la fin du jeu
+*/
+
+void	destroy_text(t_env *env, t_text *textures)
+{
+	mlx_destroy_image(env->mlx_ptr, textures[WALL].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[3].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[4].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[WALL_BRICK].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DIAMOND].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[GROUND].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[SECRET_PATH].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[CHEST].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_B].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_D].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[BARREL].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[POMP].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[GAMEOVER].text_ptr);
 }
