@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:43:46 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:27:30 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,6 @@ void		load_text(t_env *env, t_text *textures)
 	get_text(env, textures, "textures/barrel.xpm", BARREL);
 	get_text(env, textures, "textures/pomp_idle.xpm", POMP);
 	get_text(env, textures, "textures/game_over.xpm", GAMEOVER);
-}
-
-/*
-** detruit toutes les textures a la fin du jeu
-*/
-
-void		destroy_text(t_env *env, t_text *textures)
-{
-	mlx_destroy_image(env->mlx_ptr, textures[WALL].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[3].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[4].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[WALL_BRICK].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[DIAMOND].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[GROUND].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[SECRET_PATH].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[CHEST].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_B].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_D].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[BARREL].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[POMP].text_ptr);
-	mlx_destroy_image(env->mlx_ptr, textures[GAMEOVER].text_ptr);
 }
 
 /*
