@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 13:52:51 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 13:56:27 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void		get_dickman_text(t_sprite *sprite)
 		sprite->text_index = sprite->dir_x < 0 ? DICKMAN : DICKMAN_B;
 }
 
+/*
+** a chaque tick de game on deplace les dickmans, on checks les collisions
+** avec les murs et on change de sens
+*/
+
 void		move_sprite(t_map *map, t_sprite *sprite)
 {
 	int		save_x;
@@ -69,6 +74,10 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 		sprite->x += sprite->dir_x;
 	}
 }
+
+/*
+** gere le clignement des dickmans
+*/
 
 void		dying_animation(t_env *env, t_sprite *sprite)
 {
