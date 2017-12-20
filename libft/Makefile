@@ -3,80 +3,111 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+         #
+#    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/09 08:34:21 by wnoth             #+#    #+#              #
-#    Updated: 2017/12/07 11:10:54 by wnoth            ###   ########.fr        #
+#    Created: 2017/11/02 08:23:52 by gmonnier          #+#    #+#              #
+#    Updated: 2017/12/14 10:15:08 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
-CFLAGS		= -Wall -Werror -Wextra -I. -c
-FILES		= ft_memset.c \
-				ft_bzero.c \
-				ft_memcpy.c \
-				ft_memccpy.c \
-				ft_strlen.c \
-				ft_memmove.c \
-				ft_memchr.c \
-				ft_memcmp.c \
-				ft_strcpy.c \
-				ft_strdup.c \
-				ft_strcat.c \
-				ft_strncat.c \
-				ft_strlcat.c \
-				ft_strchr.c \
-				ft_strrchr.c \
-				ft_strstr.c \
-				ft_strnstr.c \
-				ft_strcmp.c \
-				ft_strncmp.c \
-				ft_atoi.c \
-				ft_isalpha.c \
-				ft_isdigit.c \
-				ft_isalnum.c \
-				ft_isprint.c \
-				ft_toupper.c \
-				ft_tolower.c \
-				ft_strncpy.c \
-				ft_isascii.c \
-				ft_memalloc.c \
-				ft_memdel.c \
-				ft_strnew.c \
-				ft_strdel.c \
-				ft_strclr.c \
-				ft_striter.c \
-				ft_striteri.c \
-				ft_strmap.c \
-				ft_strmapi.c \
-				ft_strequ.c \
-				ft_strnequ.c \
-				ft_strsub.c \
-				ft_strjoin.c \
-				ft_strtrim.c \
-				ft_strsplit.c \
-				ft_putchar.c \
-				ft_putstr.c \
-				ft_putnbr.c \
-				ft_itoa.c \
-				ft_putendl.c \
-				ft_putchar_fd.c \
-				ft_putstr_fd.c \
-				ft_putendl_fd.c \
-				ft_putnbr_fd.c \
-				ft_lstnew.c \
-				ft_lstdelone.c \
-				ft_lstdel.c \
-				ft_lstadd.c \
-				ft_lstiter.c \
-				get_next_line.c
-OBJ			= $(FILES:%.c=%.o)
- 
-#PROGRESS BAR
-T = $(words $(OBJ))
-N = 0
-C = $(words $N)$(eval N := x $N)
-ECHO = "[`expr $C  '*' 100 / $T`%]"
+.PHONY: all $(NAME) clean fclean re
+
+NAME = libft.a
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+SRCDIR = srcs
+OBJDIR = obj
+INCDIR = includes
+
+SRC = \
+	other/ft_swap_ptr.c \
+
+SRC += \
+	test/ft_isalnum.c \
+	test/ft_isalpha.c \
+	test/ft_isascii.c \
+	test/ft_isdigit.c \
+	test/ft_isprint.c \
+	test/ft_ischarset.c
+
+SRC += \
+	math/ft_recursive_power.c \
+	math/ft_atoi.c \
+	math/ft_itoa.c \
+	math/ft_itoa_base.c
+
+SRC += \
+	print/ft_print_bits.c \
+	print/ft_putchar.c \
+	print/ft_putchar_fd.c \
+	print/ft_putendl.c \
+	print/ft_putendl_fd.c \
+	print/ft_putnbr.c \
+	print/ft_putnbr_fd.c \
+	print/ft_putstr.c \
+	print/ft_putstr_fd.c
+
+SRC += \
+	mem/ft_memalloc.c \
+	mem/ft_memccpy.c \
+	mem/ft_memchr.c \
+	mem/ft_memcmp.c \
+	mem/ft_memcpy.c \
+	mem/ft_memdel.c \
+	mem/ft_memmove.c \
+	mem/ft_bzero.c \
+	mem/ft_memset.c
+
+
+SRC += \
+	list/ft_lst_sort.c \
+	list/ft_lst_pop.c \
+	list/ft_lst_size.c \
+	list/ft_lst_reverse.c \
+	list/ft_lstadd.c \
+	list/ft_lstdel.c \
+	list/ft_lstdelone.c \
+	list/ft_lstiter.c \
+	list/ft_lstmap.c \
+	list/ft_lstnew.c \
+	list/ft_merge_sort.c
+
+SRC += \
+	str/ft_parse_char.c \
+	str/ft_parse_str.c \
+	str/ft_tolower.c \
+	str/ft_toupper.c \
+	str/ft_strcat.c \
+	str/ft_strchr.c \
+	str/ft_strclr.c \
+	str/ft_strcmp.c \
+	str/ft_strcpy.c \
+	str/ft_strdel.c \
+	str/ft_strdup.c \
+	str/ft_strequ.c \
+	str/ft_striter.c \
+	str/ft_striteri.c \
+	str/ft_strjoin.c \
+	str/ft_strlcat.c \
+	str/ft_strlen.c \
+	str/ft_strmap.c \
+	str/ft_strmapi.c \
+	str/ft_strncat.c \
+	str/ft_strncmp.c \
+	str/ft_strncpy.c \
+	str/ft_strnequ.c \
+	str/ft_strnew.c \
+	str/ft_strnstr.c \
+	str/ft_strrchr.c \
+	str/ft_strsplit.c \
+	str/ft_strstr.c \
+	str/ft_strsub.c \
+	str/ft_strtrim.c
+
+SRC += \
+	get_next_line.c
 
 #Colors
 _GREY=\x1b[30m
@@ -89,26 +120,30 @@ _CYAN=\x1b[36m
 _WHITE=\x1b[37m
 _END=\x1b[0m
 
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
+OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(basename $(SRC))))
+ALL_OBJ_DIR = $(sort $(dir $(OBJS)))
+INCS = $(addprefix -I, $(addsuffix /, $(INCDIR)))
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
-	@clear
-	@echo "$(NAME) compilation : $(_GREEN)DONE$(_END)"
+$(NAME): $(OBJS)
+	@echo "\nCompiling library $(NAME)... $(_GREEN)DONE$(_END)"
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
-%.o: %.c
-	@clear
-	@printf "%-60b\r" "\t$(ECHO) $(_CYAN) Compiling $@ $(_END)"
-	@$(CC) $(FLAGS) -c $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@printf "                                                          \r"
+	@printf " $(_CYAN)Compiling $@$(_END)\r"
+	@mkdir -p $(OBJDIR) || true
+	@$(CC) -o $@ -c $(CFLAGS) $< $(INCS)
 
 clean:
-	@$(RM) -f $(OBJ)
-	@echo "clean LIBFT: $(_GREEN)DONE$(_END)"
+	@echo "Removed objects (.o) files."
+	@/bin/rm -f $(OBJS)
 
 fclean: clean
-	@$(RM) -f $(NAME)
-	@echo "fclean LIBFT: $(_GREEN)DONE$(_END)"
+	@echo "Removed library ($(NAME))."
+	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
