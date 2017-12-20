@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:56 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:19:21 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:49:50 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 static void	add_coin(t_map *map)
 {
 	map->coin++;
-	ft_putstr("coin : ");
-	ft_putnbr(map->coin);
-	ft_putchar('\n');
 	system("afplay sounds/sfx_point.wav &");
 	del_sprite(map, map->hited_obj_x + map->hited_obj_y * map->w);
 }
