@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:21:42 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 10:43:46 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		get_text(t_env *env, t_text *textures, char *path, int index)
 ** Load toutes les textures, toutes les memes ici
 */
 
-void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures la fin du prog
+void		load_text(t_env *env, t_text *textures)
 {
 	get_text(env, textures, "textures/wall.xpm", WALL);
 	get_text(env, textures, "textures/gmonnier.xpm", 3);
@@ -52,7 +52,7 @@ void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures
 ** detruit toutes les textures a la fin du jeu
 */
 
-void			destroy_text(t_env *env, t_text *textures)
+void		destroy_text(t_env *env, t_text *textures)
 {
 	mlx_destroy_image(env->mlx_ptr, textures[WALL].text_ptr);
 	mlx_destroy_image(env->mlx_ptr, textures[3].text_ptr);
@@ -77,17 +77,13 @@ void			destroy_text(t_env *env, t_text *textures)
 ** correspondant et on store dans img
 */
 
-/*
-** on peut ajouter un effet plus sombre ici
-*/
-
-int		get_pixel_from_texture(t_env *env, t_ray *ray)
+int			get_pixel_from_texture(t_env *env, t_ray *ray)
 {
 	int text_index;
 	int color;
 
 	text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
-	color = env->textures[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
+	color = ENVTEX[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
 	if (color == 0xFF00)
 		return (0xFF00);
 	if (ray->side > 1)
@@ -95,7 +91,7 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 	return (color);
 }
 
-void	get_tex_x(t_ray *ray)
+void		get_tex_x(t_ray *ray)
 {
 	int		tex_x;
 
@@ -112,7 +108,7 @@ void	get_tex_x(t_ray *ray)
 	ray->tex_x = tex_x;
 }
 
-void	get_tex_y(t_ray *ray, int y, int height, int line_height)
+void		get_tex_y(t_ray *ray, int y, int height, int line_height)
 {
 	int d;
 
