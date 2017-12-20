@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/20 10:47:22 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 11:05:09 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <map.h>
 #include <wolf.h>
 #include <error.h>
+
 /*
 ** ici on define une map et on remplis notre struct map avec cette derniere
 ** FF = bloc plein, 00 bloc vide, 02 un mur, 01 un bloc vide bloquant le joueur
 */
 
-void 			ft_exit(int error)
+void		ft_exit(int error)
 {
 	ft_use_env(0, 0);
 	if (error == 1)
@@ -30,7 +43,7 @@ void 			ft_exit(int error)
 	exit(-1);
 }
 
-void			map_init(t_map *map, char *filename)
+void		map_init(t_map *map, char *filename)
 {
 	ft_open(map, filename);
 	ft_check_for_error(map);
@@ -39,26 +52,27 @@ void			map_init(t_map *map, char *filename)
 	ft_open(map, filename);
 	ft_get_size(map);
 	ft_get_tex(map);
-	if (!(map->data = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
+	if (!(map->data = (int *)malloc(sizeof(int) * (map->w * map->h))))
 		ft_exit(1);
-	if (!(map->initial_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
+	if (!(map->initial_map = (int *)malloc(sizeof(int) * (map->w * map->h))))
 		ft_exit(1);
-	if (!(map->reset_map = (int *)malloc(sizeof(int) * (map->w * map->h)))) //to free
+	if (!(map->reset_map = (int *)malloc(sizeof(int) * (map->w * map->h))))
 		ft_exit(1);
 	ft_set_map(map);
 	check_y_zero(map);
 	ft_getspawn(map);
 	map->coin = 0;
-	// copy de la map pour save la position des sprites
-	map->initial_map = (int*)ft_memcpy(map->initial_map, map->data, (map->w * map->h) * sizeof(int));
-	map->reset_map = (int*)ft_memcpy(map->reset_map, map->data, (map->w * map->h) * sizeof(int));
+	map->initial_map = (int*)ft_memcpy(map->initial_map,
+		map->data, (map->w * map->h) * sizeof(int));
+	map->reset_map = (int*)ft_memcpy(map->reset_map, map->data,
+		(map->w * map->h) * sizeof(int));
 }
 
 /*
-** On parcour le tableau pour renvoyer ca valeur 
+** On parcour le tableau pour renvoyer ca valeur
 */
 
-int				map_get(t_map *map, int x, int y)
+int			map_get(t_map *map, int x, int y)
 {
 	int		pos;
 
@@ -78,7 +92,7 @@ int				map_get(t_map *map, int x, int y)
 ** on renvoi la couleur en fonction de l'orientation
 */
 
-int				map_color(int side)
+int			map_color(int side)
 {
 	if (side == 1)
 		return (0xFF0000);
@@ -93,7 +107,7 @@ int				map_color(int side)
 **debug
 */
 
-void			print_map(t_map map)
+void		print_map(t_map map)
 {
 	int i;
 
