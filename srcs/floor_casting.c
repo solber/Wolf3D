@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 10:28:08 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 14:26:31 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 15:34:29 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	get_text_coord(t_env *env, t_ray *ray, int y)
 	current_dist = env->height / (2.0 * y - env->height);
 	weight = (current_dist - dist_player) / (ray->wall_dist - dist_player);
 	current_floor_x = weight * ray->floor_x_wall + (1.0 - weight) * ray->pos_x;
-	current_floor_y = weight * ray->floor_y_wall + (1.0 - weight) * ray->pos_y;
+	current_floor_y = (weight * ray->floor_y_wall + (1.0 - weight)
+		* ray->pos_y);
 	ray->floor_text_x = (int)(current_floor_x * TEXT_WIDTH) % TEXT_WIDTH;
 	ray->floor_text_y = (int)(current_floor_y * TEXT_HEIGHT) % TEXT_HEIGHT;
 }
@@ -61,7 +62,7 @@ void		floor_casting(t_env *env, t_ray *ray, int pos)
 	if (ray->end < 0)
 		ray->end = env->height;
 	y = ray->end - 1;
-	while (++y < env->height)
+	while (++y < env->height + 1)
 	{
 		get_text_coord(env, ray, y);
 		img_put_px(env, (env->textures[env->floor].data[TEXT_WIDTH *

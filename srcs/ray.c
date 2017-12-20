@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 17:44:25 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 12:01:28 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 15:32:57 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void			ray_display(t_env *env, t_ray *ray, int pos, int height)
 	start = -line_height / 2 + height / 2;
 	ray->end = line_height / 2 + height / 2;
 	start = start < 0 ? 0 : start;
-	ray->end = ray->end >= height ? height - 1 : ray->end;
+	ray->end = ray->end >= height ? height : ray->end;
 	get_tex_x(ray);
 	while (start < ray->end)
 	{

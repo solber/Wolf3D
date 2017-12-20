@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:28:03 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 13:33:00 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 15:28:00 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			draw_all(t_env *env)
 	input_action(env);
 	sprite_casting(env, &(env->cam));
 	draw_gun(env, env->textures[POMP]);
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, -2);
 	if (!env->is_alive)
 		mlx_put_image_to_window(MLX, WIN, ENVTEX[GAMEOVER].text_ptr,
 			WIDTH / 2 - ENVTEX[GAMEOVER].w /
