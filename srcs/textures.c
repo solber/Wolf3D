@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 15:16:58 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 10:21:42 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,28 @@ void			load_text(t_env *env, t_text *textures) // il faudra destroy les textures
 }
 
 /*
+** detruit toutes les textures a la fin du jeu
+*/
+
+void			destroy_text(t_env *env, t_text *textures)
+{
+	mlx_destroy_image(env->mlx_ptr, textures[WALL].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[3].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[4].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[WALL_BRICK].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DIAMOND].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[GROUND].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[SECRET_PATH].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[CHEST].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_B].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[DICKMAN_D].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[BARREL].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[POMP].text_ptr);
+	mlx_destroy_image(env->mlx_ptr, textures[GAMEOVER].text_ptr);
+}
+
+/*
 ** recupere la bonne texture de la map a afficher PUIS
 ** recupere ou la texture est touchee en x
 ** on connait la hauteur de la line a dessinee, on recupere les pixels
@@ -68,7 +90,6 @@ int		get_pixel_from_texture(t_env *env, t_ray *ray)
 	color = env->textures[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
 	if (color == 0xFF00)
 		return (0xFF00);
-	//assombri les couleurs pour side == 1 (modifiable)
 	if (ray->side > 1)
 		return ((color >> 1) & 0x7F7F7F);
 	return (color);
@@ -78,14 +99,11 @@ void	get_tex_x(t_ray *ray)
 {
 	int		tex_x;
 
-	//valeur exacte ou la ray a touchee la texture
 	if (ray->side <= 1)
 		ray->wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
-
-	//pixel correspondant sur la texture
 	tex_x = (int)(ray->wall_x * (double)(TEXT_WIDTH));
 	if (ray->side <= 1 && ray->dir_x > 0)
 		tex_x = TEXT_WIDTH - tex_x - 1;

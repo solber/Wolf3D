@@ -6,7 +6,7 @@
 /*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:32:31 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/19 17:35:10 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 10:35:42 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@
 
 int				exit_hook(void *param)
 {
+	t_env *env;
+
+	env = ft_use_env(-1, 0);
 	param = 0;
+	destroy_text(env, env->textures);
+	mlx_destroy_image(env->mlx_ptr, env->img);
+	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+	free(env->sprites);
+	free(env->sprites_order);
+	free(env->sprites_distance);
 	ft_use_env(0, 0);
 	system("killall afplay");
-	exit(1);
+	exit(EXIT_SUCCESS);
 }
 
 /*
@@ -117,7 +126,7 @@ int				key_hook_press(int keycode, void *param)
 }
 
 /*
-** et icio on gere juste quand on release pour arreter la boucle sur les actions
+** et ici on gere juste quand on release pour arreter la boucle sur les actions
 */
 
 int				key_hook_release(int keycode, void *param)
