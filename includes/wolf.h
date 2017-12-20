@@ -68,19 +68,11 @@ void			vertical_draw(t_env *env, int x);
 ** fonctions de textures
 */
 
-<<<<<<< HEAD
 void	get_tex_x(t_ray *ray);
 void	get_tex_y(t_ray *ray, int y, int height, int line_height);
 void	load_text(t_env *env, t_text *textures);
 int		get_pixel_from_texture(t_env *env, t_ray *ray);
 void	destroy_text(t_env *env, t_text *textures);
-=======
-void			get_tex_x(t_ray *ray);
-void			get_tex_y(t_ray *ray, int y, int height, int line_height);
-void			load_text(t_env *env, t_text *textures);
-int				get_pixel_from_texture(t_env *env, t_ray *ray);
->>>>>>> 92080cd99a604e2702a0864f11f8971f8ec92eb9
-
 /*
 ** floor_casting
 */
