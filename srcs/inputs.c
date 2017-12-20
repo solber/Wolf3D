@@ -6,38 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:32:31 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:05:36 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 11:25:49 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-/*
-** exit propre lorsque ESC appuye // DEVRA AUSSI GERER LES FREES !
-*/
-
-int				exit_hook(void *param)
-{
-	t_env *env;
-
-	env = ft_use_env(-1, 0);
-	param = 0;
-	destroy_text(env, env->textures);
-	mlx_destroy_image(env->mlx_ptr, env->img);
-	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
-	free(env->sprites);
-	free(env->sprites_order);
-	free(env->sprites_distance);
-	if (env->map.data)
-		free(env->map.data);
-	if (env->map.initial_map)
-		free(env->map.initial_map);
-	if (env->map.reset_map)
-		free(env->map.reset_map);
-	ft_use_env(0, 0);
-	system("killall afplay");
-	exit(EXIT_SUCCESS);
-}
 
 /*
 ** ici on fait les deplacement en appelant une autre fonction pour le keyrepeat
