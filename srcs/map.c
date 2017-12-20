@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:47:22 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:05:09 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 11:40:25 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,24 +101,4 @@ int			map_color(int side)
 	if (side == 3)
 		return (0x0DFF00);
 	return (0xFFEE00);
-}
-
-/*
-**debug
-*/
-
-void		print_map(t_map map)
-{
-	int i;
-
-	i = 0;
-	printf("\n");
-	while (i < map.h * map.w)
-	{
-		printf("%d ", map.initial_map[i]);
-		i++;
-		if (i % map.w == 0)
-			printf("\n");
-	}
-	printf("\n");
 }
