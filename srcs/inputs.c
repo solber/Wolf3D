@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:32:31 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:35:42 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:05:36 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int				exit_hook(void *param)
 	free(env->sprites);
 	free(env->sprites_order);
 	free(env->sprites_distance);
+	if (env->map.data)
+		free(env->map.data);
+	if (env->map.initial_map)
+		free(env->map.initial_map);
+	if (env->map.reset_map)
+		free(env->map.reset_map);
 	ft_use_env(0, 0);
 	system("killall afplay");
 	exit(EXIT_SUCCESS);

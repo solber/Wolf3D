@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.h                                           :+:      :+:    :+:   */
+/*   miscellaneous.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 14:51:58 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:14:19 by wnoth            ###   ########.fr       */
+/*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 11:14:49 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UPDATE_H
-# define UPDATE_H
+#include "wolf.h"
+#include "update.h"
 
-# include "wolf.h"
-
-typedef struct		s_timer
+void		update_game(t_env *env)
 {
-	clock_t			now;
-	clock_t			last_time;
-	double			delta;
-	clock_t			timer;
-	int				ticks;
-	double			time_per_tick;
-}					t_timer;
+	int i;
 
-#endif
+	i = -1;
+	while (++i < env->nb_sprite)
+	{
+		move_sprite(&(env->map), &(env->sprites[i]));
+		if (env->sprites[i].timer_dead > 0)
+			dying_animation(env, &(env->sprites[i]));
+	}
+	env->timer.ticks = 0;
+	env->timer.timer = 0;
+}
