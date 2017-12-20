@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 10:59:50 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 11:36:58 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 
 typedef struct		s_sprite
 {
-	double			x; //coordonnes dans la map
+	double			x;
 	double			y;
-	double			dir_x; // vecteur de direction pour ceux qui bougent
-	double			dir_y; // non utiliser en l'etat actuel
-	int				del; // pour savoir si on a recup le sprite, de base 0
+	double			dir_x;
+	double			dir_y;
+	int				del;
 	int				text_index;
-	double			real_x; //coordonnees par rapport au joueur(camera)
+	double			real_x;
 	double			real_y;
-	double			transform_x; //profondeur du sprite
+	double			transform_x;
 	double			transform_y;
-	int				tex_x; //pixels correspondant sur la texture
+	int				tex_x;
 	int				tex_y;
-	int				draw_start_y; // ou faut il draw
+	int				draw_start_y;
 	int				draw_end_y;
 	int				draw_start_x;
 	int				draw_end_x;
@@ -40,10 +40,12 @@ typedef struct		s_sprite
 	int				height;
 	int				screen_x;
 	double			real_dist;
-	int				timer_dead; //compteur avant mort
+	int				timer_dead;
 	int				type;
 }					t_sprite;
-void		init_sprites(t_sprite **sprites, int nb);
-void		del_sprite(t_map *map, int pos);
-void		sort_sprites(int *order, double *dist, int nb);
+
+void				init_sprites(t_sprite **sprites, int nb);
+void				del_sprite(t_map *map, int pos);
+void				sort_sprites(int *order, double *dist, int nb);
+
 #endif

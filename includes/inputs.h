@@ -1,21 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inputs.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/20 11:26:12 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 11:32:44 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef INPUTS_H
 # define INPUTS_H
 
-#ifdef __linux__
-
-# define FORWARD 119
-# define BACKWARD 115
-# define LEFT 97
-# define RIGHT 100
-# define STRAFL 113
-# define STRAFR 101
-# define FIRE 32
-
-# define FOVUP 65451
-# define FOVDOWN 65453
-# define ENTER 65293
-
-#else
 # define FORWARD 13
 # define BACKWARD 1
 # define LEFT 0
@@ -28,7 +25,6 @@
 
 # define FIRE 49
 # define ENTER 36
-#endif
 
 typedef struct	s_inputs
 {

@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/18 15:55:46 by wnoth             #+#    #+#             */
+/*   Updated: 2017/12/20 11:35:01 by wnoth            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RAY_H
 # define RAY_H
+
 # include "camera.h"
 # include "map.h"
 # include <math.h>
@@ -20,15 +33,15 @@ typedef struct	s_ray
 	int			step_x;
 	int			step_y;
 	int			side;
-	int 		tex_x;
-	int 		tex_y;
-	int			end; // jusqu'ou on doit draw la ray en vertical
-	double		wall_x; //valeur exacte ou la ray a touchee la texture
+	int			tex_x;
+	int			tex_y;
+	int			end;
+	double		wall_x;
 	double		floor_x_wall;
-	double		floor_y_wall; //x et y de la texture du sol en dessous de la ray
+	double		floor_y_wall;
 	int			floor_text_x;
 	int			floor_text_y;
-	int			hit_sprite; //check si la ray a touche un sprite avant un mur
+	int			hit_sprite;
 }				t_ray;
 
 void			ray_init(t_ray *ray, t_cam *camera, double cur_pos);
