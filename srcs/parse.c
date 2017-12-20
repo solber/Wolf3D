@@ -6,7 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:04:55 by wnoth             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/12/20 12:35:14 by wnoth            ###   ########.fr       */
+=======
+/*   Updated: 2017/12/20 12:32:33 by gmonnier         ###   ########.fr       */
+>>>>>>> 66c8cdbca5dc2e29bb45f320918b25a7596d6602
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +38,7 @@ void			ft_get_size(t_map *map)
 	int		count;
 
 	count = 0;
-	while (get_next_line(map->fd, &line))
+	while (get_next_line(map->fd, &line) > 0)
 	{
 		if (count)
 		{
@@ -61,7 +65,7 @@ void			ft_get_tex(t_map *map)
 
 	count = 0;
 	env = ft_use_env(-1, 0);
-	while (get_next_line(map->fd, &line) && count <= 1)
+	while (get_next_line(map->fd, &line) > 0 && count <= 1)
 	{
 		if (count)
 		{
@@ -86,7 +90,7 @@ void			ft_set_map(t_map *map)
 	count = 0;
 	i = 0;
 	j = 0;
-	while (get_next_line(map->fd, &line) && count < map->h)
+	while (get_next_line(map->fd, &line) > 0 && count < map->h)
 	{
 		splited = ft_strsplit(line, ' ');
 		while (splited[j])
