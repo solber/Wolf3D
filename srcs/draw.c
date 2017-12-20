@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:28:03 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 15:46:42 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/20 18:22:31 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void			draw_all(t_env *env)
 	env->map.coinc = ft_itoa(env->map.coin);
 	while (++x < env->width)
 		vertical_draw(env, x);
-	input_action(env);
 	sprite_casting(env, &(env->cam));
+	input_action(env);
 	draw_gun(env, env->textures[POMP]);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img, 0, 0);
 	if (!env->is_alive)
