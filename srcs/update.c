@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:14:51 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/20 13:52:51 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		get_dickman_text(t_sprite *sprite)
 	if (env->cam.pos_y < sprite->y)
 		sprite->text_index = sprite->dir_x < 0 ? DICKMAN_B : DICKMAN;
 	else
-		sprite->text_index = sprite->dir_x < 0 ? DICKMAN_B : DICKMAN;
+		sprite->text_index = sprite->dir_x < 0 ? DICKMAN : DICKMAN_B;
 }
 
 void		move_sprite(t_map *map, t_sprite *sprite)
@@ -56,11 +56,9 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 		save_x = (int)sprite->x;
 		avoid_wall = sprite->dir_x > 0 ? 0.5 : -0.5;
 		if (map_get(map, (int)(sprite->x + sprite->dir_x +
-			avoid_wall), (int)sprite->y) > 0)
-		{
+		avoid_wall), (int)sprite->y) > 0)
 			sprite->dir_x = -sprite->dir_x;
-			get_dickman_text(sprite);
-		}
+		get_dickman_text(sprite);
 		if ((sprite->x + sprite->dir_x) - save_x >= 1 ||
 		(sprite->x + sprite->dir_x) - save_x <= 0)
 		{
