@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:10:37 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:36:58 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 10:28:08 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "map.h"
 
-# define SPRITE_SPEED 0.1
+# define SPRITE_SPEED 0.08
 # define HIT_BOX 0.5
 
 typedef struct		s_sprite

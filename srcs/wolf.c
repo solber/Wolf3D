@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:34:15 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/21 10:21:41 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 10:27:19 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				expose_hook(void *param)
 			input_action(env);
 			draw_all(env);
 		}
-		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
+		if (env->timer.timer >= CLOCKS_PER_SEC / 30)
 			update_game(env);
 	}
 	return (0);
