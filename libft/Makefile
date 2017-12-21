@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/02 08:23:52 by gmonnier          #+#    #+#              #
-#    Updated: 2017/12/14 10:15:08 by gmonnier         ###   ########.fr        #
+#    Updated: 2017/12/21 11:03:22 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,9 +133,9 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(ALL_OBJ_DIR) || true
 	@printf "                                                          \r"
 	@printf " $(_CYAN)Compiling $@$(_END)\r"
-	@mkdir -p $(OBJDIR) || true
 	@$(CC) -o $@ -c $(CFLAGS) $< $(INCS)
 
 clean:
