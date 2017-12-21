@@ -6,7 +6,7 @@
 /*   By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 17:00:57 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 13:30:20 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 10:54:39 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		del_sprite(t_map *map, int pos)
 		if ((int)env->sprites[i].y * map->w + (int)env->sprites[i].x == pos)
 		{
 			if (env->sprites[i].type == DICKMAN)
-				env->sprites[i].timer_dead = 10;
+				env->sprites[i].timer_dead = 20;
 			else
 				env->sprites[i].del = 1;
 			map->initial_map[pos] = 0;

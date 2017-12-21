@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 13:56:27 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 10:54:52 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		move_sprite(t_map *map, t_sprite *sprite)
 void		dying_animation(t_env *env, t_sprite *sprite)
 {
 	sprite->timer_dead--;
-	if (sprite->timer_dead % 2)
+	if (sprite->timer_dead % 4)
 		sprite->text_index = 0;
 	else
 		sprite->text_index = DICKMAN_D;
