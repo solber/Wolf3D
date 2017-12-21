@@ -1,3 +1,6 @@
+inc="0"
+tot="0"
+
 function verif
 {
 	res=""
@@ -5,25 +8,27 @@ function verif
 	empty=""
 
 	if [ ! $# = "1" ]; then
-		printf DAODOSAIDOASIDASOFDASD
+		printf "Error arg"
 		exit 1
 	fi
+	tot=$(echo "$tot + 1" | bc)
 	res=$(./wolf3d $1)
 	echo $res
 	ret=$(echo $res | grep Error)
-	ret2=$($ret = $empty)
-	echo $ret2
+	if [[ -n $ret ]]; then
+		inc=$(echo "$inc + 1" | bc)
+	fi
 }
 
-#norminette srcs/*.c
-#norminette includes/*.h
+norminette srcs/*.c
+norminette includes/*.h
 make
 clear
 echo "\n\x1b[36mVerification open folder :\x1b[0m"
 verif maps/
 echo "\n\x1b[36mVerification open random file :\x1b[0m"
 verif sounds/shotgun.wav
-echo "\x1b[36mVerification map vide :\x1b[0m"
+echo "\n\x1b[36mVerification map vide :\x1b[0m"
 verif maps/invalid/invalid_empty.wolf3d
 echo "\n\x1b[36mVerification map size :\x1b[0m"
 verif maps/invalid/invalid_x_y_sprites.wolf3d
@@ -55,3 +60,9 @@ echo "\n\x1b[36mVerification GND SKY missing :\x1b[0m"
 verif maps/invalid/invalid_gndsky_missing.wolf3d
 echo "\n\x1b[36mVerification nb of sprites :\x1b[0m"
 verif maps/invalid/invalid_nb_of_sprite.wolf3d
+
+if [[ $tot = $inc ]]; then
+	echo "\n\x1b[32mSUCCESS ! \x1b[0m"
+else
+	echo "\n\x1b[34mFATAL ERROR ! \x1b[0m"
+fi
