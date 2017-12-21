@@ -20,8 +20,15 @@ function verif
 	fi
 }
 
+clear
+echo "\x1b[36m"
 norminette srcs/*.c
 norminette includes/*.h
+echo "\x1b[0m"
+echo "\n\x1b[35m"
+read -p  "Press enter to continue"
+echo "\x1b[0m"
+clear
 make
 clear
 echo "\n\x1b[36mVerification open folder :\x1b[0m"
