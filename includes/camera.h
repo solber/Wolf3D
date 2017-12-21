@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:31:17 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 10:24:26 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "map.h"
 
-# define SPEED_ROT 0.10
-# define SPEED_MOVE 0.15
+# define SPEED_ROT 0.05
+# define SPEED_MOVE 0.10
 
 typedef struct	s_cam
 {

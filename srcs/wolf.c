@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:34:15 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:40:58 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 10:21:41 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int				expose_hook(void *param)
 	{
 		get_next_time(&(env->timer));
 		if (env->timer.delta >= 1)
+		{
+			input_action(env);
 			draw_all(env);
+		}
 		if (env->timer.timer >= CLOCKS_PER_SEC / 10)
 			update_game(env);
 	}
