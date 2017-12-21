@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/21 10:24:26 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 13:49:01 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void			cam_forward(t_cam *cam, t_map *map, double speed);
 void			cam_backward(t_cam *cam, t_map *map, double speed);
 void			cam_left(t_cam *cam, double speed);
 int				get_collision(int x, int y, t_map *map);
-int				check_collision(int texture_hited, t_map *map);
+int				check_collision(int x_t_hited, int y_t_hited,
+					int texture_hited, t_map *map);
 
 #endif

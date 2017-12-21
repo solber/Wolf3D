@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:02 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 14:40:36 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 13:39:58 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
 	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
 	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
-	if (check_collision(x_t_hited, map))
+	if (check_collision(x_t_hited, y_t_hited, x_t_hited, map))
 		cam->pos_x += cam->dir_x * speed;
-	if (check_collision(y_t_hited, map))
+	if (check_collision(x_t_hited, y_t_hited, y_t_hited, map))
 		cam->pos_y += cam->dir_y * speed;
 }
 
@@ -75,9 +75,9 @@ void			cam_backward(t_cam *cam, t_map *map, double speed)
 	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed);
 	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
 	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
-	if (check_collision(x_t_hited, map))
+	if (check_collision(x_t_hited, y_t_hited, x_t_hited, map))
 		cam->pos_x -= cam->dir_x * speed;
-	if (check_collision(y_t_hited, map))
+	if (check_collision(x_t_hited, y_t_hited, y_t_hited, map))
 		cam->pos_y -= cam->dir_y * speed;
 }
 

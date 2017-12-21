@@ -1,7 +1,7 @@
 #META X Y nb_sprites
-12 18 5
+12 18 4
 #GND AND SKY
-7 5
+7 6
 #MAP
 2 2 2 2 2 2 2 2 2 2 2 2
 2 6 6 6 6 6 0 0 0 0 0 2

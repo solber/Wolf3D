@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:56 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:49:50 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 13:48:25 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ static void	add_coin(t_map *map)
 	del_sprite(map, map->hited_obj_x + map->hited_obj_y * map->w);
 }
 
-int			check_collision(int texture_hited, t_map *map)
+int			check_collision(int x_t_hited, int y_t_hited,
+	int texture_hited, t_map *map)
 {
 	if (texture_hited == 0)
 		return (1);
 	if (texture_hited == SECRET_PATH)
 		return (1);
 	if (texture_hited == CHEST)
-		add_coin(map);
+		if ((x_t_hited == CHEST && y_t_hited == EMPTY)
+		|| (x_t_hited == EMPTY && y_t_hited == CHEST))
+			add_coin(map);
 	return (0);
 }
 
