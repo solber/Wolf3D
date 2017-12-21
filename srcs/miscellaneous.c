@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 13:57:53 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:37:42 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,17 @@ void	free_splited(char **splited)
 		i++;
 	}
 	free(splited);
+}
+
+void	line_size(char **splited, int action)
+{
+	int i;
+
+	i = 0;
+	while (splited[i])
+		i++;
+	if (action == 0 && i != 3)
+		ft_exit(2);
+	else if (action == 1 && i != 2)
+		ft_exit(2);
 }

@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:16:48 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:32:07 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:44:27 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	ft_exit_line(int error, int linenb);
 void	ft_getspawn(t_map *map);
 void	check_y_zero(t_map *map);
 void	check_x(t_map *map);
+void	line_size(char **splited, int action);
+int		is_tex(int nb, int action);
 
 #endif

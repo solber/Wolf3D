@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 14:11:15 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:45:50 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,17 @@ void	ft_check_for_error(t_map *map)
 	map->linenb = 0;
 	if ((get_next_line(map->fd, &(map->line))) <= 0)
 		ft_exit(4);
-	if (map->line)
-		free(map->line);
+	free(map->line);
 	map->linenb++;
 	while (get_next_line(map->fd, &(map->line)) && count < 1)
 	{
 		map->linenb++;
 		map->splited = ft_strsplit(map->line, ' ');
+		line_size(map->splited, 0);
 		checkforletter(map);
 		map->w = ft_atoi(map->splited[0]);
 		map->h = ft_atoi(map->splited[1]);
+		tmp_spri_nb(ft_atoi(map->splited[2]));
 		free_splited(map->splited);
 		free(map->line);
 		count++;
@@ -88,10 +89,10 @@ void	ft_continue_error(t_map *map)
 		ft_exit_line(1, map->linenb);
 	map->linenb += 2;
 	map->splited = ft_strsplit(map->line, ' ');
+	line_size(map->splited, 1);
 	checkforletter(map);
-	if (ft_atoi(map->splited[0]) <= 0 || ft_atoi(map->splited[1]) <= 0)
-		ft_exit_line(3, map->linenb);
-	if (ft_atoi(map->splited[0]) >= 20 || ft_atoi(map->splited[1]) >= 20)
+	if (!is_tex(ft_atoi(map->splited[0]), 0) ||
+		!is_tex(ft_atoi(map->splited[1]), 0))
 		ft_exit_line(3, map->linenb);
 	free(map->line);
 	free_splited(map->splited);
@@ -110,7 +111,7 @@ void	ft_check_for_map_size(t_map *map)
 
 	i = -1;
 	count = 0;
-	while (get_next_line(map->fd, &(map->line)) > 0 && count < map->h)
+	while (get_next_line(map->fd, &(map->line)) > 0 && count++ < map->h)
 	{
 		if (count == 0)
 		{
@@ -123,9 +124,9 @@ void	ft_check_for_map_size(t_map *map)
 			free_splited(map->splited);
 		}
 		check_x(map);
-		count++;
 		free(map->line);
 	}
+	verif_nb_spri();
 	if (count != map->h)
 		ft_exit_line(6, map->linenb);
 	if (count == 0)

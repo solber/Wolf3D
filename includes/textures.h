@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/20 11:28:18 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:06:59 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
 
+# define EMPTY 0
 # define WALL 2
 # define WALL_BRICK 5
 # define DIAMOND 6

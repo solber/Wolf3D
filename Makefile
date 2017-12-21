@@ -14,7 +14,8 @@ SRC= srcs/inputs.c \
 	srcs/error.c \
 	srcs/line_format.c \
 	srcs/draw.c \
-	srcs/miscellaneous.c
+	srcs/miscellaneous.c \
+	srcs/verif_number.c
 
 CC=clang
 CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror

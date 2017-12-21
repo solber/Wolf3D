@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:38:41 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 15:50:16 by gmonnier         ###   ########.fr       */
+/*   Updated: 2017/12/21 11:27:42 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_env
 	t_text		textures[NB_TEXTURES];
 	t_timer		timer;
 	int			nb_sprite;
+	int			count_sprite;
 	t_sprite	*sprites;
 	double		z_buffer[WIDTH];
 	int			*sprites_order;
@@ -114,5 +115,8 @@ void			get_next_time(t_timer *timer);
 
 void			reset(t_env *env);
 void			free_splited(char **splited);
+void			verif_number(int nb);
+void			verif_nb_spri();
+void			tmp_spri_nb(int nb);
 
 #endif

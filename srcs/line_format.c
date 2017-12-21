@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 12:31:27 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:21:43 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	check_x(t_map *map)
 	{
 		if (ft_atoi(map->splited[i]) < 0)
 			ft_exit_line(5, map->linenb);
+		verif_number(ft_atoi(map->splited[i]));
 		max++;
 		i++;
 	}

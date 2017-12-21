@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:47:22 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 13:40:26 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:30:34 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void		ft_exit(int error)
 		ft_putendl("😡 Error : Wrong map border on Y for x = max.");
 	else if (error == 9)
 		ft_putendl("😡 Error : Wrong map border on X for y = max.");
+	else if (error == 10)
+		ft_putendl("😡 Error : Unkwown texture ID.");
+	else if (error == 11)
+		ft_putendl("😡 Error : Invalid number of sprites.");
 	exit(-1);
 }
 
