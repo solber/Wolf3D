@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 11:44:54 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/21 11:46:41 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:57:54 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int			is_tex(int nb, int action)
 	if (nb == WALL)
 		r = 1;
 	else if (nb == WALL_BRICK)
+		r = 1;
+	else if (nb == GMONNIER)
+		r = 1;
+	else if (nb == WNOTH)
 		r = 1;
 	else if (nb == DIAMOND)
 		r = 1;

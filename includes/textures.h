@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:41:13 by gmonnier          #+#    #+#             */
-/*   Updated: 2017/12/21 11:06:59 by wnoth            ###   ########.fr       */
+/*   Updated: 2017/12/21 11:57:36 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 # define EMPTY 0
 # define WALL 2
+# define GMONNIER 3
+# define WNOTH 4
 # define WALL_BRICK 5
 # define DIAMOND 6
 # define GROUND 7
