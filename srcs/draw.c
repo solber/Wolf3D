@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:28:03 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 14:51:58 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 08:12:27 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,12 @@ void			draw_all(t_env *env)
 
 void			img_put_px(t_env *env, int color, int x, int y)
 {
-	env->tmp[y * env->sl + x * env->bpp / 8] = (color & 0xFF);
-	env->tmp[y * env->sl + x * env->bpp / 8 + 1] = (color & 0xFF00) >> 8;
-	env->tmp[y * env->sl + x * env->bpp / 8 + 2] = (color & 0xFF0000) >> 16;
+	if (y > 0)
+	{
+		env->tmp[y * env->sl + x * env->bpp / 8] = (color & 0xFF);
+		env->tmp[y * env->sl + x * env->bpp / 8 + 1] = (color & 0xFF00) >> 8;
+		env->tmp[y * env->sl + x * env->bpp / 8 + 2] = (color & 0xFF0000) >> 16;
+	}
 }
 
 /*
