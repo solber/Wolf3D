@@ -121,5 +121,6 @@ void			verif_nb_spri();
 void			tmp_spri_nb(int nb);
 void			ft_reset_input(void);
 void			ft_pause(void);
+void			ft_show_commands(void);
 
 #endif

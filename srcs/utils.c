@@ -19,6 +19,7 @@ void	ft_pause(void)
 	env = ft_use_env(-1, 0);
 	env->is_alive = (env->is_alive == 0) ? 1 : 0;
 	ft_reset_input();
+	ft_putendl("Pause pressed !");
 }
 
 void	ft_reset_input(void)
@@ -51,4 +52,16 @@ void	reset(t_env *env)
 	env->map.coin = 0;
 	timer_init(&(env->timer));
 	env->is_alive = 1;
+}
+
+void	ft_show_commands(void)
+{
+	ft_putendl("COMMANDS :");
+	ft_putendl("W, A, S, D to move");
+	ft_putendl("Q, E to straf");
+	ft_putendl("+, - to change FOV");
+	ft_putendl("P to pause the game");
+	ft_putendl("SPACE to fire");
+	ft_putendl("ENTER to reset");
+	ft_putendl("ESC to exit");	
 }

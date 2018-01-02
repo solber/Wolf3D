@@ -31,6 +31,7 @@ static void		init_env(t_env *env, char *filename)
 	env->inputs.can_fire = 1;
 	timer_init(&(env->timer));
 	env->is_alive = 1;
+	ft_show_commands();
 }
 
 /*
