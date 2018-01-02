@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:10:18 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 15:18:55 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:22:13 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int		exit_hook(void *param)
 	destroy_text(env, env->textures);
 	mlx_destroy_image(env->mlx_ptr, env->img);
 	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
-	free_null(env->sprites);
-	free_null(env->sprites_order);
-	free_null(env->sprites_distance);
+	ft_memdel((void **)&env->sprites);
+	ft_memdel((void **)&env->sprites_order);
+	ft_memdel((void **)&env->sprites_distance);
 	if (env->map.data)
-		free_null(env->map.data);
+		ft_memdel((void **)&env->map.data);
 	if (env->map.initial_map)
-		free_null(env->map.initial_map);
+		ft_memdel((void **)&env->map.initial_map);
 	if (env->map.reset_map)
-		free_null(env->map.reset_map);
+		ft_memdel((void **)&env->map.reset_map);
 	ft_use_env(0, 0);
 	system("killall afplay");
 	exit(EXIT_SUCCESS);
@@ -88,10 +88,10 @@ void	free_splited(char **splited)
 		return ;
 	while (splited[i])
 	{
-		free_null(splited[i]);
+		ft_memdel((void **)&splited[i]);
 		i++;
 	}
-	free_null(splited);
+	ft_memdel((void **)&splited);
 }
 
 void	line_size(char **splited, int action)

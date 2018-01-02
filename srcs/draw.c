@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:28:03 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/02 08:12:27 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:21:42 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			draw_all(t_env *env)
 			2, HEIGHT / 2 - ENVTEX[GAMEOVER].h / 2);
 	mlx_string_put(env->mlx_ptr, env->win_ptr, 10, 10, 0xFFFFFF, "Points:");
 	mlx_string_put(MLX, WIN, 100, 10, 0xFFFFFF, env->map.coinc);
-	free_null(env->map.coinc);
+	ft_memdel((void **)&env->map.coinc);
 	env->timer.delta -= 1;
 	env->timer.ticks++;
 }

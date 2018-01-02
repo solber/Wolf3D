@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:38:41 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 14:51:36 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:18:59 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void			update_game(t_env *env);
 void			move_sprite(t_map *map, t_sprite *sprite);
 void			dying_animation(t_env *env, t_sprite *sprite);
 void			destroy_text(t_env *env, t_text *textures);
-void			free_null(void *elem);
 
 /*
 ** Functions de draw

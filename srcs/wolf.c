@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:34:15 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 15:05:03 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:21:10 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void			reset(t_env *env)
 	env->map.reset_map, (env->map.w * env->map.h) * sizeof(int));
 	env->map.data = (int*)ft_memcpy(env->map.data, env->map.reset_map,
 	(env->map.w * env->map.h) * sizeof(int));
-	free_null(env->sprites);
-	free_null(env->sprites_order);
-	free_null(env->sprites_distance);
+	ft_memdel((void **)&env->sprites);
+	ft_memdel((void **)&env->sprites_order);
+	ft_memdel((void **)&env->sprites_distance);
 	init_sprites(&(env->sprites), env->nb_sprite);
 	cam_init(&(env->cam), 66, 0);
 	env->inputs.left = 0;

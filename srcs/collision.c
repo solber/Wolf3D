@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:56 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/02 08:41:50 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:18:44 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,5 @@ void		collide_player_sprite(t_env *env, int i)
 		env->is_alive = 0;
 		system("killall afplay");
 		system("afplay sounds/gameover.wav &");
-	}
-}
-
-void		free_null(void *elem)
-{
-	if (elem)
-	{
-		free(elem);
-		elem = NULL;
 	}
 }

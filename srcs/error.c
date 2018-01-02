@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/02 08:44:23 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:20:05 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_check_for_error(t_map *map)
 	map->linenb = 0;
 	if ((get_next_line(map->fd, &(map->line))) <= 0)
 		ft_exit(4);
-	free_null(map->line);
+	ft_memdel((void **)&map->line);
 	map->linenb++;
 	while (get_next_line(map->fd, &(map->line)) && count < 1)
 	{
@@ -75,10 +75,10 @@ void	ft_check_for_error(t_map *map)
 		map->h = ft_atoi(map->splited[1]);
 		tmp_spri_nb(ft_atoi(map->splited[2]));
 		free_splited(map->splited);
-		free_null(map->line);
+		ft_memdel((void **)&map->line);
 		count++;
 	}
-	//free_null(map->line);
+	ft_memdel((void **)&map->line);
 	ft_continue_error(map);
 }
 
@@ -93,12 +93,12 @@ void	ft_continue_error(t_map *map)
 	if (!is_tex(ft_atoi(map->splited[0]), 0) ||
 		!is_tex(ft_atoi(map->splited[1]), 0))
 		ft_exit_line(3, map->linenb);
-	free_null(map->line);
+	ft_memdel((void **)&map->line);
 	free_splited(map->splited);
 	map->linenb++;
 	if ((get_next_line(map->fd, &(map->line))) <= 0)
 		ft_exit_line(1, map->linenb);
-	free_null(map->line);
+	ft_memdel((void **)&map->line);
 	ft_check_for_map_size(map);
 }
 
@@ -122,7 +122,7 @@ void	ft_check_for_map_size(t_map *map)
 			free_splited(map->splited);
 		}
 		check_x(map);
-		free_null(map->line);
+		ft_memdel((void **)&map->line);
 	}
 	verif_nb_spri();
 	if (count != map->h)

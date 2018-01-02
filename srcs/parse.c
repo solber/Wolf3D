@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 12:36:10 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/02 08:42:01 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:19:36 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void			ft_get_size(t_map *map)
 			map->h = ft_atoi(splited[1]);
 			ft_get_nb_sprites(splited[2]);
 			free_splited(splited);
-			free_null(line);
+			ft_memdel((void **)&line);
 			break ;
 		}
-		free_null(line);
+		ft_memdel((void **)&line);
 		count++;
 	}
 }
@@ -69,10 +69,10 @@ void			ft_get_tex(t_map *map)
 			env->roof = ft_atoi(splited[1]);
 			free_splited(splited);
 		}
-		free_null(line);
+		ft_memdel((void **)&line);
 		count++;
 	}
-	free_null(line);
+	ft_memdel((void **)&line);
 }
 
 void			ft_set_map(t_map *map)
@@ -97,7 +97,7 @@ void			ft_set_map(t_map *map)
 		}
 		j = 0;
 		free_splited(splited);
-		free_null(line);
+		ft_memdel((void **)&line);
 		count++;
 	}
 }
