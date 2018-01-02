@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 14:42:58 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 11:42:26 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,20 @@ int			get_pixel_from_texture(t_env *env, t_ray *ray)
 	int text_index;
 	int color;
 
-	text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
-	color = ENVTEX[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
-	if (color == 0xFF00)
-		return (0xFF00);
-	if (ray->side > 1)
-		return ((color >> 1) & 0x7F7F7F);
-	return (color);
+	if (ray->tex_y >= 0 && ray->tex_y < TEXT_HEIGHT
+	&& ray->tex_x >= 0 && ray->tex_x < TEXT_WIDTH &&
+	ray->map_y >= 0 && ray->map_y < HEIGHT && ray->map_x >= 0 &&
+	ray->map_x < WIDTH)
+	{
+		text_index = env->map.data[ray->map_y * env->map.w + ray->map_x];
+		color = ENVTEX[text_index].data[TEXT_HEIGHT * ray->tex_y + ray->tex_x];
+		if (color == 0xFF00)
+			return (0xFF00);
+		if (ray->side > 1)
+			return ((color >> 1) & 0x7F7F7F);
+		return (color);
+	}
+	return (0);
 }
 
 void		get_tex_x(t_ray *ray)
