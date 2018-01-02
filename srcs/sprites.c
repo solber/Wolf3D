@@ -6,13 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 10:12:05 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 15:07:09 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:45 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sprites.h"
 #include "wolf.h"
-#include "textures.h"
 
 static void		malloc_tabs(t_env *env, int nb)
 {

@@ -6,13 +6,10 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:02 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/02 12:07:55 by gmonnier         ###   ########.fr       */
+/*   Updated: 2018/01/02 12:16:53 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <camera.h>
-#include <error.h>
 #include <wolf.h>
 
 /*

@@ -6,13 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 15:10:22 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/02 11:42:26 by gmonnier         ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:53 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ray.h>
 #include <wolf.h>
-#include <textures.h>
 
 /*
 ** fonction generique pour load une texture et remplir la strucutre

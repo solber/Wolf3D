@@ -6,12 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:51:45 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 14:42:57 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:57 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include "update.h"
 
 void		timer_init(t_timer *timer)
 {

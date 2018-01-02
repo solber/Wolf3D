@@ -6,13 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 17:00:57 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 14:43:00 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:48 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sprites.h"
 #include "wolf.h"
-#include "textures.h"
 
 /*
  ** fonction basique de tri des sprites selon leur distance
