@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:02 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/02 11:55:15 by gmonnier         ###   ########.fr       */
+/*   Updated: 2018/01/02 12:07:55 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void			cam_forward(t_cam *cam, t_map *map, double speed)
 	int x_t_hited;
 	int y_t_hited;
 
-	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed);
-	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed);
+	map->hited_obj_x = (int)(cam->pos_x + cam->dir_x * speed * 3);
+	map->hited_obj_y = (int)(cam->pos_y + cam->dir_y * speed * 3);
 	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
 	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
 	if (check_collision(x_t_hited, y_t_hited, x_t_hited, map))
@@ -71,8 +71,8 @@ void			cam_backward(t_cam *cam, t_map *map, double speed)
 	int x_t_hited;
 	int y_t_hited;
 
-	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed);
-	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed);
+	map->hited_obj_x = (int)(cam->pos_x - cam->dir_x * speed * 3);
+	map->hited_obj_y = (int)(cam->pos_y - cam->dir_y * speed * 3);
 	x_t_hited = map->initial_map[(int)cam->pos_y * map->w + map->hited_obj_x];
 	y_t_hited = map->initial_map[map->hited_obj_y * map->w + (int)cam->pos_x];
 	if (check_collision(x_t_hited, y_t_hited, x_t_hited, map))
