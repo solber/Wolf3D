@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:38:41 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/02 11:18:59 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:25:24 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "textures.h"
 # include "sprites.h"
 # include "update.h"
+# include "error.h"
 # include "/System/Library/Frameworks/Tk.framework/Versions/8.4/Headers/X11/X.h"
 
 # define ENVTEX env->textures
