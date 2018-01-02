@@ -6,7 +6,7 @@
 #    By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/21 10:59:48 by wnoth             #+#    #+#              #
-#    Updated: 2018/01/02 08:18:26 by wnoth            ###   ########.fr        #
+#    Updated: 2018/01/02 11:24:10 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC= srcs/inputs.c \
 	srcs/verif_number.c
 
 CC=clang
-CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror
+CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror -g3 -fsanitize=address
 OBJ=$(SRC:.c=.o)
 LDFLAGS=-L libft/ -L minilibx_macos/
 LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
@@ -38,7 +38,7 @@ LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 $(NAME): $(OBJ)
 	make -C libft/
 	make -C minilibx_macos/
-	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(LIBS)
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(LIBS) -g3 -fsanitize=address
 
 all: $(NAME)
 
