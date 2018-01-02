@@ -83,7 +83,7 @@ int				key_hook_press(int keycode)
 	env = ft_use_env(-1, 0);
 	reset_escape(keycode, env);
 	if (keycode == PAUSE)
-		env->is_alive = (env->is_alive == 0) ? 1 : 0;
+		ft_pause();
 	if (env && env->is_alive)
 	{
 		if (keycode == FORWARD)

@@ -82,30 +82,6 @@ int				expose_hook(void *param)
 	return (0);
 }
 
-void			reset(t_env *env)
-{
-	env->is_alive = 1;
-	env->map.initial_map = (int*)ft_memcpy(env->map.initial_map,
-	env->map.reset_map, (env->map.w * env->map.h) * sizeof(int));
-	env->map.data = (int*)ft_memcpy(env->map.data, env->map.reset_map,
-	(env->map.w * env->map.h) * sizeof(int));
-	ft_memdel((void **)&env->sprites);
-	ft_memdel((void **)&env->sprites_order);
-	ft_memdel((void **)&env->sprites_distance);
-	init_sprites(&(env->sprites), env->nb_sprite);
-	cam_init(&(env->cam), 66, 0);
-	env->inputs.left = 0;
-	env->inputs.right = 0;
-	env->inputs.up = 0;
-	env->inputs.down = 0;
-	env->inputs.sleft = 0;
-	env->inputs.sright = 0;
-	env->inputs.can_fire = 1;
-	env->map.coin = 0;
-	timer_init(&(env->timer));
-	env->is_alive = 1;
-}
-
 /*
 ** on lance l'image , et on lance les hook.
 */
