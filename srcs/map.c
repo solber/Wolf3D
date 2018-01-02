@@ -6,13 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:47:22 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 14:43:07 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:34 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <map.h>
 #include <wolf.h>
-#include <error.h>
 
 /*
 ** ici on define une map et on remplis notre struct map avec cette derniere

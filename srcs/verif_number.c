@@ -6,13 +6,11 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 11:44:54 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 14:42:55 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:18:10 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <error.h>
 #include <wolf.h>
-#include <textures.h>
 
 int			is_tex(int nb, int action)
 {

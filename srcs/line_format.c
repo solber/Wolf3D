@@ -6,12 +6,10 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 10:02:44 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 14:43:09 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:28 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <error.h>
-#include <map.h>
 #include <wolf.h>
 
 void	check_y_zero(t_map *map)

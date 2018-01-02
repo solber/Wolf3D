@@ -6,11 +6,10 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 12:36:10 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/02 11:19:36 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:17:38 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <map.h>
 #include <wolf.h>
 
 void			ft_open(t_map *map, char *filename)

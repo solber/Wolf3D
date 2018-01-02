@@ -6,11 +6,10 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:19:56 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/02 11:18:44 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 12:16:57 by gmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <camera.h>
 #include <wolf.h>
 
 static void	add_coin(t_map *map)
