@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 16:32:31 by gmonnier          #+#    #+#             */
-/*   Updated: 2018/01/01 14:43:10 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 08:35:55 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,14 @@ static void		reset_escape(int keycode, t_env *env)
 ** ici on gere juste le keypress en repeat
 */
 
-int				key_hook_press(int keycode, void *param)
+int				key_hook_press(int keycode)
 {
 	t_env		*env;
 
 	env = ft_use_env(-1, 0);
-	param = 0;
 	reset_escape(keycode, env);
+	if (keycode == PAUSE)
+		env->is_alive = (env->is_alive == 0) ? 1 : 0;
 	if (env && env->is_alive)
 	{
 		if (keycode == FORWARD)

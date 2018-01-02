@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:12 by wnoth             #+#    #+#             */
-/*   Updated: 2017/12/20 11:32:44 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 08:36:07 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define RIGHT 2
 # define STRAFL 12
 # define STRAFR 14
+# define PAUSE 35
 
 # define FOVUP 69
 # define FOVDOWN 78
@@ -38,7 +39,7 @@ typedef struct	s_inputs
 	int			can_fire;
 }				t_inputs;
 
-int				key_hook_press(int keycode, void *param);
+int				key_hook_press(int keycode);
 int				key_hook_release(int keycode, void *param);
 int				exit_hook(void *param);
 

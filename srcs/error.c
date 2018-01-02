@@ -6,7 +6,7 @@
 /*   By: wnoth <wnoth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:41:25 by wnoth             #+#    #+#             */
-/*   Updated: 2018/01/01 15:16:03 by wnoth            ###   ########.fr       */
+/*   Updated: 2018/01/02 08:44:23 by wnoth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_check_for_error(t_map *map)
 		free_null(map->line);
 		count++;
 	}
+	//free_null(map->line);
 	ft_continue_error(map);
 }
 
