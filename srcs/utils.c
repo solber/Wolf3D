@@ -63,5 +63,5 @@ void	ft_show_commands(void)
 	ft_putendl("P to pause the game");
 	ft_putendl("SPACE to fire");
 	ft_putendl("ENTER to reset");
-	ft_putendl("ESC to exit");	
+	ft_putendl("ESC to exit");
 }
