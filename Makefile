@@ -31,7 +31,7 @@ SRC= srcs/inputs.c \
 	srcs/utils.c
 
 CC=clang
-CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS=-I libft/includes -I minilibx_macos/ -I get_next_line/ -I includes/ -Wall -Wextra -Werror
 OBJ=$(SRC:.c=.o)
 LDFLAGS=-L libft/ -L minilibx_macos/
 LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
@@ -39,7 +39,7 @@ LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 $(NAME): $(OBJ)
 	make -C libft/
 	make -C minilibx_macos/
-	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(LIBS) -g3 -fsanitize=address
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) $(LIBS)
 
 all: $(NAME)
 
